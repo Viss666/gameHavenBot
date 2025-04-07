@@ -6,6 +6,7 @@ from discord.ext import commands
 from flask import Flask, request, jsonify
 import threading
 from datetime import datetime
+from flask_cors import CORS
 
 import asyncio
 from dotenv import load_dotenv
@@ -30,6 +31,8 @@ def military_to_standard(time_str):
 intents = discord.Intents.default()
 bot = commands.Bot(command_prefix='!', intents=intents)
 app = Flask(__name__)
+
+CORS(app)
 
 async def post_event(event_data):
     await bot.wait_until_ready()  # Ensure bot is ready before sending
