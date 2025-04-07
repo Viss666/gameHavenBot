@@ -94,8 +94,8 @@ async def post_event(event_data):
                 player2 = match.get("player2")
                 is_bye = match.get("isBye", False)
 
-                player1_display = f"{player1.get('playerName', 'N/A')} ({player1.get('playerDiscordID', 'N/A')})" if player1 else "N/A"
-                player2_display = f"{player2.get('playerName', 'N/A')} ({player2.get('playerDiscordID', 'N/A')})" if player2 else "N/A"
+                player1_display = f"{player1.get('player_name', 'N/A')} ({player1.get('discord_id', 'N/A')})" if player1 else "N/A"
+                player2_display = f"{player2.get('player_name', 'N/A')} ({player2.get('discord_id', 'N/A')})" if player2 else "N/A"
 
                 if is_bye and player1:
                     pairing_text += f"{player1_display} has a bye.\n"
@@ -111,7 +111,7 @@ async def post_event(event_data):
             # Show registered players if no matches
             if matches == []:
                 player_list_text = "\n".join(
-                    f"- {p.get('playerName', 'Unknown')} ({p.get('playerDiscordID', 'N/A')})" for p in playerList
+                    f"- {p.get('player_name', 'Unknown')} ({p.get('discord_id', 'N/A')})" for p in playerList
                 )
                 embed.add_field(name="Registered Players", value=player_list_text, inline=False)
             else:
