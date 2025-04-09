@@ -16,7 +16,8 @@ import os
 load_dotenv()
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
-PAIRINGS_CHANNEL_ID = 1118396315559280700
+GENERAL_PAIRINGS_CHANNEL_ID = 1359343581705539726
+TNF_PARINGS_CHANNEL_ID = 1358687166410260602
 
 def military_to_standard(time_str):
     from datetime import datetime
@@ -36,7 +37,10 @@ CORS(app)
 
 async def post_event(event_data):
     await bot.wait_until_ready()  # Ensure bot is ready before sending
-    channel = bot.get_channel(PAIRINGS_CHANNEL_ID)
+    if event_data.get("eventTitle") == "Thursday Night Firefight":
+        channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
+    else:
+        channel = bot.get_channel(GENERAL_PAIRINGS_CHANNEL_ID)
     print(f"Attempting to post to channel: {channel}")  # Debug
 
     if channel:
