@@ -74,7 +74,7 @@ async def post_event(event_data):
                 date_object = datetime.fromisoformat(event_date_str)
                 month_str = date_object.strftime("%B")
                 day_num = date_object.day
-                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {event_time}"
+                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {military_to_standard(event_time)}"
             except ValueError:
                 date_display = f"**Date:** {event_date_str} ({event_day} at {event_time})"
         else:
