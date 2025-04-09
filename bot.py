@@ -55,7 +55,7 @@ async def post_event(event_data):
         playerList = event_data.get("playerList", [])  # New field for fallback
         event_fee = event_data.get("eventFee", "Free")
         event_id = event_data.get("_id")
-        event_url = f"https://gamehavenstg.com/events/{event_id}" if event_id else "No URL available"
+        event_url = f"https://gamehavenstg.com/events/{event_id}"
 
         # Handle fee
         if str(event_fee) in ["0", "0.0", "0.00", "Free"]:
@@ -115,8 +115,10 @@ async def post_event(event_data):
             # Show registered players if no matches
             if matches == []:
                 player_list_text = "\n".join(
-                    f"- {p.get('player_name', 'Unknown')} ({p.get('discord_id', 'N/A')})" for p in playerList
+                    f"- {p.get('playerName', 'Unknown')} ({p.get('playerDiscordID', 'N/A')})"
+                    for p in playerList
                 )
+
                 embed.add_field(name="Registered Players", value=player_list_text, inline=False)
             else:
                 embed.add_field(name="Registered Players", value="No players registered.", inline=False)
