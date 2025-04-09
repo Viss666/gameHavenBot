@@ -46,6 +46,7 @@ async def post_event(event_data):
     if channel:
         event_title = event_data.get("eventTitle", "Untitled Event")
         event_game = event_data.get("eventGame", "Unknown Game")
+        event_description = event_data.get("eventDescription", "Unkown Description")
         event_date_str = event_data.get("eventDate", None)
         event_day = event_data.get("eventDay", "")
         event_time = event_data.get("eventTime", "")
@@ -91,6 +92,13 @@ async def post_event(event_data):
             inline=False
         )
 
+        embed.add_field(
+            name="Description",
+            value=f"{event_description}",
+            inline=False
+        )
+
+
         pairing_text = ""
         if matches:
             for match in matches:
@@ -129,7 +137,6 @@ async def post_event(event_data):
         await channel.send(embed=embed)
         return True
     else:
-        print(f"Error: Could not find channel with ID {PAIRINGS_CHANNEL_ID}")
         return False
 
 @app.route('/publish_event', methods=['POST'])
