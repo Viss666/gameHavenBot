@@ -55,7 +55,7 @@ async def post_event(event_data):
         matches = event_data.get("matches", [])
         playerList = event_data.get("playerList", [])  # New field for fallback
         event_fee = event_data.get("eventFee", "Free")
-        event_id = event_data.get("_id")
+        event_id = event_data.get("_id") 
         event_url = f"https://gamehavenstg.com/events/{event_id}"
 
         # Handle fee
@@ -75,7 +75,7 @@ async def post_event(event_data):
                 date_object = datetime.fromisoformat(event_date_str)
                 month_str = date_object.strftime("%B")
                 day_num = date_object.day
-                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {military_to_standard(event_time)}"
+                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {event_time}"
             except ValueError:
                 date_display = f"**Date:** {event_date_str} ({event_day} at {event_time})"
         else:
