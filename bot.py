@@ -56,6 +56,7 @@ async def post_event(event_data):
         playerList = event_data.get("playerList", [])  # New field for fallback
         event_fee = event_data.get("eventFee", "Free")
         event_id = event_data.get("_id") 
+        isPublished = event_data.get("isPublished")
         event_url = f"https://gamehavenstg.com/events/{event_id}"
 
         # Handle fee
@@ -64,8 +65,13 @@ async def post_event(event_data):
         else:
             event_fee_display = f"${event_fee}"
 
+        if isPublished == False: 
+            checkIn = "Check In"
+        else:
+            checkIn = ""
+
         embed = discord.Embed(
-            title=event_title,
+            title=event_title + " " + checkIn,
             color=discord.Color.blue()
         )
 
@@ -100,36 +106,37 @@ async def post_event(event_data):
 
 
         pairing_text = ""
-        if matches:
-            for match in matches:
-                player1 = match.get("player1")
-                player2 = match.get("player2")
-                is_bye = match.get("isBye", False)
+        if isPublished == True:
+            if matches:
+                for match in matches:
+                    player1 = match.get("player1")
+                    player2 = match.get("player2")
+                    is_bye = match.get("isBye", False)
 
-                player1_display = f"{player1.get('playerName', 'N/A')} ({player1.get('playerDiscordID', 'N/A')})" if player1 else "N/A"
-                player2_display = f"{player2.get('playerName', 'N/A')} ({player2.get('playerDiscordID', 'N/A')})" if player2 else "N/A"
+                    player1_display = f"{player1.get('playerName', 'N/A')} ({player1.get('playerDiscordID', 'N/A')})" if player1 else "N/A"
+                    player2_display = f"{player2.get('playerName', 'N/A')} ({player2.get('playerDiscordID', 'N/A')})" if player2 else "N/A"
 
-                if  player1 and not player2:
-                    pairing_text += f"{player1_display} has a bye.\n"
-                elif player1 and player2:
-                    pairing_text += f"{player1_display} vs {player2_display}\n"
-                elif player1 and not player2 and not is_bye:
-                    pairing_text += f"Error: Incomplete match data for {player1_display}\n"
-                elif not player1 and player2 and not is_bye:
-                    pairing_text += f"Error: Incomplete match data for {player2_display}\n"
+                    if  player1 and not player2:
+                        pairing_text += f"{player1_display} has a bye.\n"
+                    elif player1 and player2:
+                        pairing_text += f"{player1_display} vs {player2_display}\n"
+                    elif player1 and not player2 and not is_bye:
+                        pairing_text += f"Error: Incomplete match data for {player1_display}\n"
+                    elif not player1 and player2 and not is_bye:
+                        pairing_text += f"Error: Incomplete match data for {player2_display}\n"
 
-            embed.add_field(name="Pairings", value=pairing_text, inline=False)
-        else:
-            # Show registered players if no matches
-            if matches == []:
-                player_list_text = "\n".join(
-                    f"- {p.get('playerName', 'Unknown')} ({p.get('playerDiscordID', 'N/A')})"
-                    for p in playerList
-                )
-
-                embed.add_field(name="Registered Players", value=player_list_text, inline=False)
+                embed.add_field(name="Pairings", value=pairing_text, inline=False)
             else:
-                embed.add_field(name="Registered Players", value="No players registered.", inline=False)
+                # Show registered players if no matches
+                if matches == []:
+                    player_list_text = "\n".join(
+                        f"- {p.get('playerName', 'Unknown')} ({p.get('playerDiscordID', 'N/A')})"
+                        for p in playerList
+                    )
+
+                    embed.add_field(name="Registered Players", value=player_list_text, inline=False)
+                else:
+                    embed.add_field(name="Registered Players", value="No players registered.", inline=False)
 
         print(f"Embed title: {embed.title}")
         print("Attempting to send embed...")
