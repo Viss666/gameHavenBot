@@ -4,3 +4,4 @@ aiohttp
 python-dotenv
 gunicorn
 Flask-CORS
+re

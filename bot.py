@@ -7,7 +7,7 @@ from flask import Flask, request, jsonify
 import threading
 from datetime import datetime
 from flask_cors import CORS
-
+import re
 import asyncio
 from dotenv import load_dotenv
 import os
@@ -19,13 +19,50 @@ BOT_TOKEN = os.environ.get('BOT_TOKEN')
 GENERAL_PAIRINGS_CHANNEL_ID = 1359343581705539726
 TNF_PARINGS_CHANNEL_ID = 1358687166410260602
 
-def military_to_standard(time_str):
-    from datetime import datetime
-    try:
-        time_obj = datetime.strptime(time_str, "%H:%M")
-        return time_obj.strftime("%I:%M %p").lstrip("0")  # Remove leading zero from hour
-    except ValueError:
-        return "Invalid time format"
+# def military_to_standard(time_str):
+#     from datetime import datetime
+#     try:
+#         time_obj = datetime.strptime(time_str, "%H:%M")
+#         return time_obj.strftime("%I:%M %p").lstrip("0")  # Remove leading zero from hour
+#     except ValueError:
+#         return "Invalid time format"
+    
+
+def is_military_time(time_str):
+    """Checks if a time string is in military (24-hour) format."""
+    military_pattern = re.compile(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$')
+    return bool(military_pattern.match(time_str))
+
+def is_standard_time(time_str):
+    """Checks if a time string is in standard (12-hour) format."""
+    standard_pattern = re.compile(r'^(1[0-2]|0?[1-9]):[0-5][0-9]\s?(AM|PM|am|pm)$')
+    return bool(standard_pattern.match(time_str))
+
+def military_to_standard(military_time):
+    """Converts military time to standard time."""
+    if not is_military_time(military_time):
+        return "Invalid military time format."
+
+    hours, minutes = map(int, military_time.split(':'))
+    period = "AM"
+    if hours >= 12:
+        period = "PM"
+        if hours > 12:
+            hours -= 12
+    if hours == 0:
+        hours = 12
+
+    return f"{hours:02d}:{minutes:02d} {period}"
+
+def time_format_check_and_convert(time_str):
+    """Checks the time format and converts military to standard if needed."""
+    if is_military_time(time_str):
+        return military_to_standard(time_str)
+    elif is_standard_time(time_str):
+        return time_str #already standard time
+    else:
+        return "Invalid time format."
+
 
 
 
@@ -81,7 +118,7 @@ async def post_event(event_data):
                 date_object = datetime.fromisoformat(event_date_str)
                 month_str = date_object.strftime("%B")
                 day_num = date_object.day
-                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {event_time}"
+                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {time_format_check_and_convert(event_time)}"
             except ValueError:
                 date_display = f"**Date:** {event_date_str} ({event_day} at {event_time})"
         else:
