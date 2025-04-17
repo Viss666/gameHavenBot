@@ -258,6 +258,23 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 app = Flask(__name__)
 CORS(app)
 
+async def on_message(message):
+    if message.author == bot.user:
+        return  # Prevents the bot from replying to itself
+
+    # Check for a trigger phrase
+    if "heresy" in message.content.lower():
+        file_path = "videos/heresy.mp4"  
+
+        if os.path.exists(file_path):
+            video_file = discord.File(file_path, filename="heresy.mp4") 
+            await message.reply(file=video_file)
+        else:
+            await message.reply("Sorry, I couldn't find the video file!")
+
+    # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
+    await bot.process_commands(message)
+
 async def post_event(event_data):
     await bot.wait_until_ready()
 
