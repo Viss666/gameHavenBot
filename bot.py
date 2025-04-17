@@ -66,7 +66,14 @@ async def on_message(message):
             video_file = discord.File(file_path, filename="heresy.mp4") 
             await message.reply(file=video_file)
         else:
-            await message.reply("Sorry, I couldn't find the video file!")
+            await message.reply("Sorry, video not found.")
+    else if "kill yourself" or "kys" in message.content.lower():
+        file_path = "videos/neverkys.mp4"
+        if os.path.exists(file_path):
+            video_file = discord.File(file__path, filename="neverkys.mp4")
+            await message.replay(file=video_file)
+        else:
+            await message.reply("Sorry, video not found.")
 
     # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
     await bot.process_commands(message)
