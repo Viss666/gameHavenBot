@@ -102,7 +102,7 @@ async def post_event(event_data):
     isPublished = event_data.get("isPublished")
     event_url = f"https://gamehavenstg.com/events/{event_id}"
 
-    event_fee_display = "FREE" if str(event_fee) in ["0", "0.0", "0.00", "Free"] else f"${event_fee}"
+    event_fee_display = "FREE" if str(event_fee) in ["0", "0.0", "0.00", "Free", ""] else f"${event_fee}"
     checkIn = "Check In" if isPublished == False else ""
 
     embed = discord.Embed(title=event_title + " " + checkIn, color=discord.Color.blue())
@@ -155,6 +155,7 @@ async def post_event(event_data):
     if event_title == "Thursday Night Firefight":
         tnf_channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
         tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
+        
         if tnf_channel:
             await tnf_channel.send(embed=embed)
             await tnf_discord.send(embed=embed)
