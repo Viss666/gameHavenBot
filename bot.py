@@ -67,7 +67,7 @@ async def on_message(message):
             await message.reply(file=video_file)
         else:
             await message.reply("Sorry, video not found.")
-    else if "kill yourself" or "kys" in message.content.lower():
+    elif "kill yourself" or "kys" in message.content.lower():
         file_path = "videos/neverkys.mp4"
         if os.path.exists(file_path):
             video_file = discord.File(file__path, filename="neverkys.mp4")
