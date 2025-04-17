@@ -150,7 +150,7 @@ async def post_event(event_data):
                 embed.add_field(name="Registered Players", value="No players registered.", inline=False)
 
     # Send embed to general channel
-    # await general_channel.send(embed=embed)
+    await general_channel.send(embed=embed)
 
     if event_title == "Thursday Night Firefight":
         tnf_channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
