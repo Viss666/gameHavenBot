@@ -59,7 +59,7 @@ async def on_message(message):
         return  # Prevents the bot from replying to itself
 
     # Check for a trigger phrase
-    if "heresy" in message.content.lower():
+    if "this is heresy" in message.content.lower():
         file_path = "videos/heresy.mp4"  
 
         if os.path.exists(file_path):
