@@ -103,7 +103,7 @@ async def post_event(event_data):
     event_url = f"https://gamehavenstg.com/events/{event_id}"
 
     event_fee_display = "FREE" if str(event_fee) in ["0", "0.0", "0.00", "Free", ""] else f"${event_fee}"
-    checkIn = "Check In" if isPublished == False else ""
+    checkIn = "Sign Up" if isPublished == False else ""
 
     embed = discord.Embed(title=event_title + " " + checkIn, color=discord.Color.blue())
 
