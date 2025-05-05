@@ -161,7 +161,7 @@ async def post_event(event_data):
             await tnf_discord.send(embed=embed)
         else:
             print("Warning: TNF channel not found.")
-    elif event_title == "Combat Patrol":
+    elif event_title == "Thursday Night Combat Patrol":
         combat_patrol_channel = bot.get_channel(COMBAT_PATROL_CHANNEL_ID)
         tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
 
