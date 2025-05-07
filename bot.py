@@ -17,6 +17,7 @@ GENERAL_PAIRINGS_CHANNEL_ID = 1359343581705539726
 TNF_PARINGS_CHANNEL_ID = 1119468407084023930
 TNF_DISCORD_CHANNEL_ID = 905901970915721257
 COMBAT_PATROL_CHANNEL_ID = 1300249480095989760
+TNF_ANNOUNCEMENT_CHANNEL_ID = 1119473760525877289
 
 def is_military_time(time_str):
     military_pattern = re.compile(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$')
@@ -155,19 +156,25 @@ async def post_event(event_data):
     if event_title == "Thursday Night Firefight":
         tnf_channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
         tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
+        tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
         
         if tnf_channel:
             await tnf_channel.send(embed=embed)
             await tnf_discord.send(embed=embed)
+            await tnf_announcement.send(embed=embed)
+            
         else:
             print("Warning: TNF channel not found.")
     elif event_title == "Thursday Night Combat Patrol":
         combat_patrol_channel = bot.get_channel(COMBAT_PATROL_CHANNEL_ID)
         tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
+        tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
+
 
         if combat_patrol_channel:
             await combat_patrol_channel.send(embed=embed)
             await tnf_discord.send(embed=embed)
+            await tnf_announcement.send(embed=embed)
 
         else:
             print("warning: Combat Patrol channel not found")
