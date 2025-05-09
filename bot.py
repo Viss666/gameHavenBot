@@ -131,8 +131,8 @@ async def post_event(event_data):
                 player1 = match.get("player1")
                 player2 = match.get("player2")
                 is_bye = match.get("isBye", False)
-                player1_display = f"{player1.get('playerName', 'N/A')} ({player1.get('playerDiscordID', 'N/A')})" if player1 else "N/A"
-                player2_display = f"{player2.get('playerName', 'N/A')} ({player2.get('playerDiscordID', 'N/A')})" if player2 else "N/A"
+                player1_display = f"{player1.get('playerName', 'N/A')}" if player1 else "N/A"
+                player2_display = f"{player2.get('playerName', 'N/A')}" if player2 else "N/A"
 
                 if player1 and not player2:
                     pairing_text += f"{player1_display} has a bye.\n"
