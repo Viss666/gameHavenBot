@@ -11,7 +11,7 @@ from dotenv import load_dotenv
 import os
 
 load_dotenv()
-
+#note
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
 GENERAL_PAIRINGS_CHANNEL_ID = 1359343581705539726
 TNF_PARINGS_CHANNEL_ID = 1119468407084023930
