@@ -124,7 +124,7 @@ async def post_event(event_data):
 
     embed.add_field(name="Event Details", value=f"**Game:** {event_game}\n{date_display}\n**Fee:** {event_fee_display}\n**Event URL:** {event_url}", inline=False)
     embed.add_field(name="Organizer", value=f"{event_organizer} ({organizer_contact})", inline=False)
-    embed.add_field(name="Description", value=f"{event_description}", inline=False)
+    # embed.add_field(name="Description", value=f"{event_description}", inline=False)
 
     pairing_text = ""
     if isPublished:
