@@ -127,7 +127,7 @@ async def post_event(event_data):
     embed.add_field(name="Description", value=f"{event_description}", inline=False)
 
     pairing_text = ""
-    if isPublished:
+    if isPublished == True:
         print("we are published correctly")
         if matches:
             for match in matches:
