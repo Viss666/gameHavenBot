@@ -82,123 +82,122 @@ async def on_message(message):
     await bot.process_commands(message)
 
 async def post_event(event_data):
-    await bot.wait_until_ready()
+    try:
+            
+        await bot.wait_until_ready()
 
-    general_channel = bot.get_channel(GENERAL_PAIRINGS_CHANNEL_ID)
-    if not general_channel:
-        print("Error: General channel not found.")
+        general_channel = bot.get_channel(GENERAL_PAIRINGS_CHANNEL_ID)
+        if not general_channel:
+            print("Error: General channel not found.")
+            return False
+
+        # Create embed
+        event_title = event_data.get("eventTitle", "Untitled Event")
+        event_game = event_data.get("eventGame", "Unknown Game")
+        event_description = event_data.get("eventDescription", "Unkown Description")
+        event_date_str = event_data.get("eventDate", None)
+        event_day = event_data.get("eventDay", "")
+        event_time = event_data.get("eventTime", "")
+        event_organizer = event_data.get("eventOrganizer", "Unknown Organizer")
+        organizer_contact = event_data.get("organizerContactInfo", "No contact info")
+        matches = event_data.get("matches", [])
+        playerList = event_data.get("playerList", [])
+        event_fee = event_data.get("eventFee", "Free")
+        event_id = event_data.get("_id")
+        isPublished = event_data.get("isPublished")
+        event_url = f"https://gamehavenstg.com/events/{event_id}"
+
+        event_fee_display = "FREE" if str(event_fee) in ["0", "0.0", "0.00", "Free", ""] else f"${event_fee}"
+        checkIn = "Sign Up" if isPublished == False else ""
+
+        embed = discord.Embed(title=event_title + " " + checkIn, color=discord.Color.blue())
+
+        date_display = "No date provided"
+        if event_date_str:
+            try:
+                date_object = datetime.fromisoformat(event_date_str)
+                month_str = date_object.strftime("%B")
+                day_num = date_object.day
+                date_display = f"**Date:** {month_str} {day_num}, {event_day} at {time_format_check_and_convert(event_time)}"
+            except ValueError:
+                date_display = f"**Date:** {event_date_str} ({event_day} at {event_time})"
+        else:
+            date_display = f"**Date:** No date provided ({event_day} at {event_time})"
+
+        embed.add_field(name="Event Details", value=f"**Game:** {event_game}\n{date_display}\n**Fee:** {event_fee_display}\n**Event URL:** {event_url}", inline=False)
+        embed.add_field(name="Organizer", value=f"{event_organizer} ({organizer_contact})", inline=False)
+        embed.add_field(name="Description", value=f"{event_description}", inline=False)
+
+        pairing_text = ""
+        if isPublished == True:
+            print("we are published correctly")
+            if matches:
+                for match in matches:
+                    player1 = match.get("player1")
+                    player2 = match.get("player2")
+                    # is_bye = match.get("isBye", False)
+                    
+                    # Safe name access
+                    player1_name = player1.get('playerName', 'Unknown') if player1 else 'Unknown'
+                    player2_name = player2.get('playerName', 'Unknown') if player2 else 'Unknown'
+
+                    if player1 and not player2:
+                        pairing_text += f"{player1_name} has a bye.\n"
+                    elif player1 and player2:
+                        pairing_text += f"{player1_name} vs {player2_name}\n"
+                if len(pairing_text) > 1024:
+                    pairing_text = pairing_text[:1021] + "..."
+                embed.add_field(name="Pairings", value=pairing_text, inline=False)
+            else:
+                if playerList:
+                    player_list_text = "\n".join(f"- {p.get('playerName', 'Unknown')}" for p in playerList)
+                    # Truncate player list too
+                    if len(player_list_text) > 1024:
+                        player_list_text = player_list_text[:1021] + "..."
+                    embed.add_field(name="Registered Players", value=player_list_text, inline=False)
+                else:
+                    embed.add_field(name="Registered Players", value="No players registered.", inline=False)
+        # Send embed to general channel
+        try:
+            await general_channel.send(embed=embed)
+        except Exception as e:
+            print(f"Error sending to general channel: {e}")
+
+        if event_title == "Thursday Night Firefight":
+            tnf_channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
+            tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
+            tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
+            try:
+                if tnf_channel: await tnf_channel.send(embed=embed)
+                if tnf_discord: await tnf_discord.send(embed=embed)
+                if tnf_announcement: await tnf_announcement.send(embed=embed)
+            except Exception as e:
+                print(f"Error sending TNF messages: {e}")
+
+        elif event_title == "Thursday Night Combat Patrol":
+            combat_patrol_channel = bot.get_channel(COMBAT_PATROL_CHANNEL_ID)
+            tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
+            tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
+
+
+            if combat_patrol_channel:
+                await combat_patrol_channel.send(embed=embed)
+                await tnf_discord.send(embed=embed)
+                await tnf_announcement.send(embed=embed)
+
+            else:
+                print("warning: Combat Patrol channel not found")
+        elif event_title == "Test":
+            test_channel = bot.get_channel(1118396315559280700)
+            if test_channel:
+                await test_channel.send(embed=embed)
+
+        return True
+    except Exception as e:
+        print(f"Critical error in post_event: {e}")
         return False
 
-    # Create embed
-    event_title = event_data.get("eventTitle", "Untitled Event")
-    event_game = event_data.get("eventGame", "Unknown Game")
-    event_description = event_data.get("eventDescription", "Unkown Description")
-    event_date_str = event_data.get("eventDate", None)
-    event_day = event_data.get("eventDay", "")
-    event_time = event_data.get("eventTime", "")
-    event_organizer = event_data.get("eventOrganizer", "Unknown Organizer")
-    organizer_contact = event_data.get("organizerContactInfo", "No contact info")
-    matches = event_data.get("matches", [])
-    playerList = event_data.get("playerList", [])
-    event_fee = event_data.get("eventFee", "Free")
-    event_id = event_data.get("_id")
-    isPublished = event_data.get("isPublished")
-    event_url = f"https://gamehavenstg.com/events/{event_id}"
 
-    event_fee_display = "FREE" if str(event_fee) in ["0", "0.0", "0.00", "Free", ""] else f"${event_fee}"
-    checkIn = "Sign Up" if isPublished == False else ""
-
-    embed = discord.Embed(title=event_title + " " + checkIn, color=discord.Color.blue())
-
-    date_display = "No date provided"
-    if event_date_str:
-        try:
-            date_object = datetime.fromisoformat(event_date_str)
-            month_str = date_object.strftime("%B")
-            day_num = date_object.day
-            date_display = f"**Date:** {month_str} {day_num}, {event_day} at {time_format_check_and_convert(event_time)}"
-        except ValueError:
-            date_display = f"**Date:** {event_date_str} ({event_day} at {event_time})"
-    else:
-        date_display = f"**Date:** No date provided ({event_day} at {event_time})"
-
-    embed.add_field(name="Event Details", value=f"**Game:** {event_game}\n{date_display}\n**Fee:** {event_fee_display}\n**Event URL:** {event_url}", inline=False)
-    embed.add_field(name="Organizer", value=f"{event_organizer} ({organizer_contact})", inline=False)
-    embed.add_field(name="Description", value=f"{event_description}", inline=False)
-
-    pairing_text = ""
-    if isPublished == True:
-        print("we are published correctly")
-        if matches:
-            for match in matches:
-                player1 = match.get("player1")
-                player2 = match.get("player2")
-                is_bye = match.get("isBye", False)
-                player1_display = f"{player1.get('playerName')}" 
-                player2_display = f"{player2.get('playerName')}" 
-
-                if player1 and not player2:
-                    pairing_text += f"{player1_display} has a bye.\n"
-                elif player1 and player2:
-                    pairing_text += f"{player1_display} vs {player2_display}\n"
-                elif player1 and not player2 and not is_bye:
-                    pairing_text += f"Error: Incomplete match data for {player1_display}\n"
-                elif not player1 and player2 and not is_bye:
-                    pairing_text += f"Error: Incomplete match data for {player2_display}\n"
-            embed.add_field(name="Pairings", value=pairing_text, inline=False)
-        else:
-            if playerList:
-                player_list_text = "\n".join(f"- {p.get('playerName', 'Unknown')}" for p in playerList)
-                embed.add_field(name="Registered Players", value=player_list_text, inline=False)
-            else:
-                embed.add_field(name="Registered Players", value="No players registered.", inline=False)
-
-    # Send embed to general channel
-    await general_channel.send(embed=embed)
-
-    if event_title == "Thursday Night Firefight":
-        tnf_channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
-        tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
-        tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
-        print(f"Embed length: {len(embed.to_dict())}")
-
-        if not all([tnf_channel, tnf_discord, tnf_announcement]):
-            print(f"TNF_CHANNEL: {tnf_channel}, DISCORD: {tnf_discord}, ANNOUNCE: {tnf_announcement}")
-            
-        if tnf_channel:
-            await tnf_channel.send(embed=embed)
-        else:
-            print("tnf_channel not found or inaccessible")
-
-        if tnf_discord:
-            await tnf_discord.send(embed=embed)
-        else:
-            print("tnf_discord not found or inaccessible")
-
-        if tnf_announcement:
-            await tnf_announcement.send(embed=embed)
-        else:
-            print("tnf_announcement not found or inaccessible")
-
-    elif event_title == "Thursday Night Combat Patrol":
-        combat_patrol_channel = bot.get_channel(COMBAT_PATROL_CHANNEL_ID)
-        tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
-        tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
-
-
-        if combat_patrol_channel:
-            await combat_patrol_channel.send(embed=embed)
-            await tnf_discord.send(embed=embed)
-            await tnf_announcement.send(embed=embed)
-
-        else:
-            print("warning: Combat Patrol channel not found")
-    elif event_title == "Test":
-        test_channel = bot.get_channel(1118396315559280700)
-        if test_channel:
-            await test_channel.send(embed=embed)
-
-    return True
 
 @app.route('/publish_event', methods=['POST'])
 def receive_event():
