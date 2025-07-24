@@ -124,7 +124,7 @@ async def post_event(event_data):
 
     embed.add_field(name="Event Details", value=f"**Game:** {event_game}\n{date_display}\n**Fee:** {event_fee_display}\n**Event URL:** {event_url}", inline=False)
     embed.add_field(name="Organizer", value=f"{event_organizer} ({organizer_contact})", inline=False)
-    # embed.add_field(name="Description", value=f"{event_description}", inline=False)
+    embed.add_field(name="Description", value=f"{event_description}", inline=False)
 
     pairing_text = ""
     if isPublished:
@@ -193,6 +193,7 @@ def receive_event():
     if request.is_json:
         print("Event Received")
         event_data = request.get_json()
+        print(event_data)
         if event_data:
             asyncio.run_coroutine_threadsafe(post_event(event_data), bot.loop)
             return jsonify({"status": "success", "message": "Event details posted to Discord"}), 200
