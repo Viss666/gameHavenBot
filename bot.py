@@ -160,14 +160,26 @@ async def post_event(event_data):
         tnf_channel = bot.get_channel(TNF_PARINGS_CHANNEL_ID)
         tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
         tnf_announcement = bot.get_channel(TNF_ANNOUNCEMENT_CHANNEL_ID)
-        
+        print(f"Embed length: {len(embed.to_dict())}")
+
+        if not all([tnf_channel, tnf_discord, tnf_announcement]):
+            print(f"TNF_CHANNEL: {tnf_channel}, DISCORD: {tnf_discord}, ANNOUNCE: {tnf_announcement}")
+            
         if tnf_channel:
             await tnf_channel.send(embed=embed)
-            await tnf_discord.send(embed=embed)
-            await tnf_announcement.send(embed=embed)
-            
         else:
-            print("Warning: TNF channel not found.")
+            print("tnf_channel not found or inaccessible")
+
+        if tnf_discord:
+            await tnf_discord.send(embed=embed)
+        else:
+            print("tnf_discord not found or inaccessible")
+
+        if tnf_announcement:
+            await tnf_announcement.send(embed=embed)
+        else:
+            print("tnf_announcement not found or inaccessible")
+
     elif event_title == "Thursday Night Combat Patrol":
         combat_patrol_channel = bot.get_channel(COMBAT_PATROL_CHANNEL_ID)
         tnf_discord = bot.get_channel(TNF_DISCORD_CHANNEL_ID)
