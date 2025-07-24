@@ -50,6 +50,8 @@ def time_format_check_and_convert(time_str):
 
 intents = discord.Intents.default()
 intents.message_content = True  
+intents.guilds = True 
+
 bot = commands.Bot(command_prefix='!', intents=intents)
 app = Flask(__name__)
 CORS(app)
@@ -126,6 +128,7 @@ async def post_event(event_data):
 
     pairing_text = ""
     if isPublished:
+        print("we are published correctly")
         if matches:
             for match in matches:
                 player1 = match.get("player1")
@@ -188,6 +191,7 @@ async def post_event(event_data):
 @app.route('/publish_event', methods=['POST'])
 def receive_event():
     if request.is_json:
+        print("Event Received")
         event_data = request.get_json()
         if event_data:
             asyncio.run_coroutine_threadsafe(post_event(event_data), bot.loop)
