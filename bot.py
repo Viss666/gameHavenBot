@@ -25,6 +25,7 @@ TNF_DISCORD_CHANNEL_ID = 905901970915721257
 COMBAT_PATROL_CHANNEL_ID = 1300249480095989760
 TNF_ANNOUNCEMENT_CHANNEL_ID = 1119473760525877289
 CAT_CHANNEL_ID = 1415227688368607323
+TEAM_TOYS_GENERAL_CHANNEL_ID = 1377545202029432855
 
 kittycons = [
     ":3",
@@ -54,6 +55,9 @@ kittycons = [
     "(=^･ｪ･^=)っ",
     "(=^･ω･^)y＝",
 ]
+
+allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID]
+
 
 
 def is_military_time(time_str):
@@ -135,7 +139,7 @@ async def on_message(message):
         else:
             await message.reply("Sorry, video not found.")
 
-    elif "give kitty" in message.content.lower() and message.channel.id == CAT_CHANNEL_ID:
+    elif "give kitty" in message.content.lower() and message.channel.id in allowed_cat_channels:
         async with aiohttp.ClientSession() as session:
             async with session.get("https://cataas.com/cat") as resp:
                 if resp.status == 200:
