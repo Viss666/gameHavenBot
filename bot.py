@@ -1,6 +1,9 @@
 import discord
 import json
 from discord.ext import commands
+from discord.ext import tasks
+import aiohttp
+
 from flask import Flask, request, jsonify
 import threading
 from datetime import datetime
@@ -9,6 +12,8 @@ import re
 import asyncio
 from dotenv import load_dotenv
 import os
+import io
+import zoneinfo
 
 load_dotenv()
 #note
@@ -18,6 +23,7 @@ TNF_PARINGS_CHANNEL_ID = 1119468407084023930
 TNF_DISCORD_CHANNEL_ID = 905901970915721257
 COMBAT_PATROL_CHANNEL_ID = 1300249480095989760
 TNF_ANNOUNCEMENT_CHANNEL_ID = 1119473760525877289
+CAT_CHANNEL_ID = 1415227688368607323
 
 def is_military_time(time_str):
     military_pattern = re.compile(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$')
@@ -56,6 +62,26 @@ bot = commands.Bot(command_prefix='!', intents=intents)
 app = Flask(__name__)
 CORS(app)
 
+
+MST = zoneinfo.ZoneInfo("America/Denver")  # Mountain Standard/Daylight Time
+
+@bot.event
+async def on_ready():
+    print(f"Logged in as {bot.user}")
+    send_cat.start()
+
+@tasks.loop(minutes=1)
+async def send_cat():
+    now = datetime.datetime.now(MST)
+    if now.hour == 10 and now.minute == 0:  # 10:00 AM MST
+        channel = bot.get_channel(CAT_CHANNEL_ID)
+        if channel:
+            async with aiohttp.ClientSession() as session:
+                async with session.get("https://cataas.com/cat") as resp:
+                    if resp.status == 200:
+                        data = await resp.read()
+                        await channel.send(file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
+
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
@@ -77,6 +103,15 @@ async def on_message(message):
             await message.reply(file=video_file)
         else:
             await message.reply("Sorry, video not found.")
+
+    elif "give kitty" in message.content.lower() and message.channel.id == CAT_CHANNEL_ID:
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://cataas.com/cat") as resp:
+                if resp.status == 200:
+                    data = await resp.read()
+                    await message.reply(file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
+                else:
+                    await message.reply("Sorry, couldn't fetch kitty 😿")
 
     # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
     await bot.process_commands(message)
