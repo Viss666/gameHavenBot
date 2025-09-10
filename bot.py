@@ -14,6 +14,7 @@ from dotenv import load_dotenv
 import os
 import io
 import zoneinfo
+import random
 
 load_dotenv()
 #note
@@ -24,6 +25,36 @@ TNF_DISCORD_CHANNEL_ID = 905901970915721257
 COMBAT_PATROL_CHANNEL_ID = 1300249480095989760
 TNF_ANNOUNCEMENT_CHANNEL_ID = 1119473760525877289
 CAT_CHANNEL_ID = 1415227688368607323
+
+kittycons = [
+    ":3",
+    "=3",
+    "UwU",
+    "OwO",
+    ":33",
+    "(=^･ω･^=)",
+    "(=^‥^=)",
+    "(=①ω①=)",
+    "(=ＴェＴ=)",
+    "(=｀ω´=)",
+    "(=^･^=)",
+    "(=^-ω-^=)",
+    "(=^･ｪ･^=)",
+    "(=^･o･^=)",
+    "(=^･ｪ･^=)",
+    "(=^‥^=)ﾉ",
+    "ฅ^•ﻌ•^ฅ",
+    "ฅ(＾・ω・＾ฅ)",
+    "૮₍｡´ᴖ ˔ ᴖ`｡₎ა",
+    "(=①ω①=)ﾉﾞ",
+    "(*ΦωΦ*)",
+    "(ΦωΦ)",
+    "(=ↀωↀ=)",
+    "ฅ(•ㅅ•❀)ฅ",
+    "(=^･ｪ･^=)っ",
+    "(=^･ω･^)y＝",
+]
+
 
 def is_military_time(time_str):
     military_pattern = re.compile(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$')
@@ -80,7 +111,7 @@ async def send_cat():
                 async with session.get("https://cataas.com/cat") as resp:
                     if resp.status == 200:
                         data = await resp.read()
-                        await channel.send(file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
+                        await channel.send(content="Good meowning! =3",file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
 
 @bot.event
 async def on_message(message):
@@ -109,9 +140,11 @@ async def on_message(message):
             async with session.get("https://cataas.com/cat") as resp:
                 if resp.status == 200:
                     data = await resp.read()
-                    await message.reply(file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
+
+                    text = f"{random.choice(kittycons)}"
+                    await message.reply(content=text,file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
                 else:
-                    await message.reply("Sorry, couldn't fetch kitty 😿")
+                    await message.reply("Sorry couldn't fetch 😿")
 
     # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
     await bot.process_commands(message)
