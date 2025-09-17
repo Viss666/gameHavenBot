@@ -200,6 +200,9 @@ async def on_message(message):
 
     elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.reply("carter")
+    elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
+        await message.reply("carter")
+
 
 
 
