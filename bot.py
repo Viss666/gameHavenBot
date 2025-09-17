@@ -82,14 +82,16 @@ cat_reqs = [
     "more kitty",
     "give cat",
     "cat please",
-    
+    "kitty please",
+    "kitty please",
+
 ]
 your_welcomes = [
-    "purr-haps my pleasure =3",
+    "purrhaps my pleasure =3",
     "no pawblem",
     "always happy to lend a paw!",
     "it’s the least this kitty could do!",
-    "you’re paw-sitively welcome!",
+    "you’re pawsitively welcome!",
     "you're welcome :3"
 ]
 
@@ -195,6 +197,10 @@ async def on_message(message):
                     await message.reply(content=text)
                 else:
                     await message.reply("Sorry couldn't fetch 😿")
+
+    elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
+        await message.reply("carter")
+
 
 
     # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
