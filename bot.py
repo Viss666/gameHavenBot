@@ -55,6 +55,40 @@ kittycons = [
     "(=^･ｪ･^=)っ",
     "(=^･ω･^)y＝",
 ]
+thank_yous = [
+    "thanks",
+    "ty",
+    "thx",
+    "tysm",
+    "thank u",
+    "tyty",
+    "ty <3",
+    "thx kitty",
+    "tyvm",
+    "thanks much",
+]
+cat_reqs = [
+    "cat pls",
+    "kitty pls",
+    "meow pls",
+    "cat now",
+    "send cat",
+    "gimme cat",
+    "more cat",
+    "need cat",
+    "cat pic",
+    "show cat",
+    "give kitty",
+    "more kitty",
+]
+your_welcomes = [
+    "purr-haps my pleasure =3",
+    "no pawblem",
+    "always happy to lend a paw!",
+    "it’s the least this kitty could do!",
+    "you’re paw-sitively welcome!",
+    "you're welcome :3"
+]
 
 allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID]
 
@@ -139,16 +173,26 @@ async def on_message(message):
         else:
             await message.reply("Sorry, video not found.")
 
-    elif "give kitty" in message.content.lower() and message.channel.id in allowed_cat_channels:
+    elif any(phrase in message.content.lower() for phrase in cat_reqs) and message.channel.id in allowed_cat_channels:
         async with aiohttp.ClientSession() as session:
             async with session.get("https://cataas.com/cat") as resp:
                 if resp.status == 200:
                     data = await resp.read()
-
                     text = f"{random.choice(kittycons)}"
-                    await message.reply(content=text,file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
+                    await message.reply(content=text, file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
                 else:
                     await message.reply("Sorry couldn't fetch 😿")
+
+    elif any(phrase in message.content.lower() for phrase in thank_yous) and message.channel.id == CAT_CHANNEL_ID:
+        async with aiohttp.ClientSession() as session:
+            async with session.get("https://cataas.com/cat") as resp:
+                if resp.status == 200:
+                    data = await resp.read()
+                    text = f"{random.choice(your_welcomes)}"  # use your_welcomes list here
+                    await message.reply(content=text)
+                else:
+                    await message.reply("Sorry couldn't fetch 😿")
+
 
     # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
     await bot.process_commands(message)
