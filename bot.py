@@ -80,6 +80,9 @@ cat_reqs = [
     "show cat",
     "give kitty",
     "more kitty",
+    "give cat",
+    "cat please",
+    
 ]
 your_welcomes = [
     "purr-haps my pleasure =3",
