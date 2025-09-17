@@ -57,7 +57,6 @@ kittycons = [
 ]
 thank_yous = [
     "thanks",
-    "ty",
     "thx",
     "tysm",
     "thank u",
@@ -66,6 +65,7 @@ thank_yous = [
     "thx kitty",
     "tyvm",
     "thanks much",
+    "thank you"
 ]
 cat_reqs = [
     "cat pls",
