@@ -26,6 +26,7 @@ COMBAT_PATROL_CHANNEL_ID = 1300249480095989760
 TNF_ANNOUNCEMENT_CHANNEL_ID = 1119473760525877289
 CAT_CHANNEL_ID = 1415227688368607323
 TEAM_TOYS_GENERAL_CHANNEL_ID = 1377545202029432855
+TEAM_TOYS_BOT_CHANNEL_ID = 1418346729429798953
 
 kittycons = [
     ":3",
@@ -241,7 +242,7 @@ async def send_quotes():
         quote = random.choice(quotes)
         channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
         if channel:
-            await channel.send(f"📖 {quote}")
+            await channel.send(f"{quote}")
 
         random_times.remove(current_time)
 
@@ -303,6 +304,14 @@ async def on_message(message):
             await message.reply(file=video_file)
         else:
             await message.reply("Sorry, pickle not found.")
+
+    elif "send quote" in message.content.lower() and message.channel.id in TEAM_TOYS_BOT_CHANNEL_ID:
+        quote = random.choice(quotes)
+        general_channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
+        if general_channel:
+            await general_channel.send(f"{quote}")
+        else:
+            await message.reply("guh something went wrong")
 
 
 
