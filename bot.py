@@ -203,6 +203,14 @@ async def on_message(message):
     elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.reply("carter")
 
+    elif "give pickle" in message.content.lower() and message.channel.id in allowed_cat_channels:
+        file_path = "videos/pickle.mp4"
+        if os.path.exists(file_path):
+            video_file = discord.File(file_path, filename="pickle.mp4")
+            await message.reply(file=video_file)
+        else:
+            await message.reply("Sorry, pickle not found.")
+
 
 
 
