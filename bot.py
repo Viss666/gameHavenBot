@@ -118,7 +118,7 @@ quotes = [
     "I was gon say something perverted but then I realized I'm a cultured and emotionally mature individual",
     "It's just mean girls HQ up in here",
     "Hey if I was in charge of the world... I'd make it super safe for all the um... fishnet adjacent people",
-    "Uncle Dance place thingy",
+    "Uncle Dane place thingy",
     "Yesssssiirrrr.. UNCLE DANES SERVERS AINT GOT NO HOT SPRAYS LIKE WE DO",
     "If you want to feel comfortable being mean to someone who has never done anything to you you just gotta imagine they did something",
     "I'm worth one william dollars",
@@ -312,6 +312,23 @@ async def on_message(message):
             await general_channel.send(f"{quote}")
         else:
             await message.reply("guh something went wrong")
+
+    elif message.content.lower().startswith("transmit ") and message.channel.id == TEAM_TOYS_BOT_CHANNEL_ID:
+        # Get the text after "transmit "
+        transmit_text = message.content[len("transmit "):].strip()
+
+        if not transmit_text:
+            await message.reply("no message to transmit")
+            return
+
+        general_channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
+        if general_channel:
+            await general_channel.send(transmit_text)
+        else:
+            await message.reply("guh something went wrong")
+
+
+
 
 
 
