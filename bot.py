@@ -110,7 +110,7 @@ quotes = [
     "I think we should do a Friday night group RP, with me as the alpha male dungeon master",
     "So edgy... so gritty.... so real!!!",
     "THOUGHT ABOUT KILLING MYSELF !!!!!!",
-    "hit five days no hoes vouta have a #CumSplosion in. my #Jorts",
+    "hit five days no hoes bouta have a #CumSplosion in. my #Jorts",
     "SPREADING THE (EVIL) ENERGY AROUND",
     "Threatening violence over the phone is just another day at the office for me",
     "if my bitch ain't nonbinary... then we gon say 'BYE, NELLY' #ally",
