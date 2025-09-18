@@ -305,7 +305,7 @@ async def on_message(message):
         else:
             await message.reply("Sorry, pickle not found.")
 
-    elif "send quote" in message.content.lower() and message.channel.id in TEAM_TOYS_BOT_CHANNEL_ID:
+    elif "send quote" in message.content.lower() and message.channel.id == TEAM_TOYS_BOT_CHANNEL_ID:
         quote = random.choice(quotes)
         general_channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
         if general_channel:
