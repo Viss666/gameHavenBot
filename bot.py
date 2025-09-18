@@ -226,7 +226,7 @@ def schedule_random_times():
     """Generate two random times today (hour + minute)."""
     times = set()
     while len(times) < 2:
-        hour = random.randint(10, 21)   # between 8 AM and 10 PM
+        hour = random.randint(10, 22)   # between 8 AM and 10 PM
         minute = random.randint(0, 59)
         times.add((hour, minute))
     return list(times)
