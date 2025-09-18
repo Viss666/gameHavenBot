@@ -95,6 +95,66 @@ your_welcomes = [
     "you're welcome :3"
 ]
 
+
+quotes = [
+    "gonna teach you how to mog",
+    "gonna teach you how to get the incel women online",
+    "i fear we've already fucked up",
+    "you ain't nothing but a hound dog",
+    "im a pro kitty. one meow from me could knock ur socks off wise guy",
+    "i'm gonna put you on a STRING and dunk you in my personal pain jar",
+    "I don't feel pain, regret, sadness, empathy, kindness or anything at all",
+    "INDIA RESPECT BUTTON ------> :heart:",
+    "this is my world, and in my world all the women are in love with me",
+    "man FUCK libraries",
+    "I think we should do a Friday night group RP, with me as the alpha male dungeon master",
+    "So edgy... so gritty.... so real!!!",
+    "THOUGHT ABOUT KILLING MYSELF !!!!!!",
+    "hit five days no hoes vouta have a #CumSplosion in. my #Jorts",
+    "SPREADING THE (EVIL) ENERGY AROUND",
+    "Threatening violence over the phone is just another day at the office for me",
+    "if my bitch ain't nonbinary... then we gon say 'BYE, NELLY' #ally",
+    "I was gon say something perverted but then I realized I'm a cultured and emotionally mature individual",
+    "It's just mean girls HQ up in here",
+    "Hey if I was in charge of the world... I'd make it super safe for all the um... fishnet adjacent people",
+    "Uncle Dance place thingy",
+    "Yesssssiirrrr.. UNCLE DANES SERVERS AINT GOT NO HOT SPRAYS LIKE WE DO",
+    "If you want to feel comfortable being mean to someone who has never done anything to you you just gotta imagine they did something",
+    "I'm worth one william dollars",
+    "we fucked bluetooth style",
+    "They call me Mr.Booty",
+    "you wanna get shredded, patrick bateman style?",
+    "I'm gonna hack you",
+    "hacked into your computer and I'm downloading all gay pictures. Blackmailed, slut",
+    "I HATE THE WOKE because they make women HAIRY in videogames and I only want my women hairy irl",
+    "I'm a devout feminist",
+    "ugh you always wanna bring your friends when we fuckin :rolling_eyes::pinching_hand: periodt",
+    "in here I can be my true incel self and no one will know",
+    "be nice.",
+    "BE NICE",
+    "Time to clean up these streets for the ladies out there",
+    "DOWN ON DA FLOO' AND GIVE ME 20 WAPS",
+    "Think of the working class...",
+    "look babe I just gotta hit the pay dirt on this NFT thing we're gonna be filthy rich!!!!",
+    "where's my booty pic at",
+    "slurpin on it",
+    "If I know no one got me I know carter got me can I get an amen",
+    "FREE DIZZY",
+    "Bitch you ain't neva met a STONE COLD FEMCEL like me",
+    "Eliminate pickle.",
+    "its lick yo tail tuesday!",
+    "its women wednesday!",
+    "Its freak friday!",
+    "Bitches be like...'He's MY King'. ME: That's your 4th king this year. The fuck... U playing spades???",
+    "yeah what are you, sandwich meat?",
+    "and now I ahve an entire Nation of friends on the internet....",
+    "i liek olive gardedn",
+    "Hahhahahahahhah DUMB animal"
+]
+
+random_times = []
+
+
 allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID]
 
 
@@ -143,10 +203,15 @@ MST = zoneinfo.ZoneInfo("America/Denver")  # Mountain Standard/Daylight Time
 async def on_ready():
     print(f"Logged in as {bot.user}")
     send_cat.start()
+    send_quotes.start()
+    global random_times
+    random_times = schedule_random_times()
+    print(f"Scheduled random quote times: {random_times}")
+
 
 @tasks.loop(minutes=1)
 async def send_cat():
-    now = datetime.datetime.now(MST)
+    now = datetime.now(MST)
     if now.hour == 10 and now.minute == 0:  # 10:00 AM MST
         channel = bot.get_channel(CAT_CHANNEL_ID)
         if channel:
@@ -155,6 +220,34 @@ async def send_cat():
                     if resp.status == 200:
                         data = await resp.read()
                         await channel.send(content="Good meowning! =3",file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
+
+
+def schedule_random_times():
+    """Generate two random times today (hour + minute)."""
+    times = set()
+    while len(times) < 2:
+        hour = random.randint(7, 23)   # between 8 AM and 10 PM
+        minute = random.randint(0, 59)
+        times.add((hour, minute))
+    return list(times)
+
+@tasks.loop(minutes=1)
+async def send_quotes():
+    global random_times
+    now = datetime.now(MST)
+    current_time = (now.hour, now.minute)
+
+    if current_time in random_times:
+        quote = random.choice(quotes)
+        channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
+        if channel:
+            await channel.send(f"📖 {quote}")
+
+        random_times.remove(current_time)
+
+        if not random_times:
+            random_times = schedule_random_times()
+            print(f"Rescheduled new random times: {random_times}")
 
 @bot.event
 async def on_message(message):
