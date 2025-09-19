@@ -27,6 +27,7 @@ TNF_ANNOUNCEMENT_CHANNEL_ID = 1119473760525877289
 CAT_CHANNEL_ID = 1415227688368607323
 TEAM_TOYS_GENERAL_CHANNEL_ID = 1377545202029432855
 TEAM_TOYS_BOT_CHANNEL_ID = 1418346729429798953
+TEAM_TOYS_SLOP_CHANNEL_ID = 1417985931708731473
 
 kittycons = [
     ":3",
@@ -153,10 +154,37 @@ quotes = [
     "Hahhahahahahhah DUMB animal"
 ]
 
+# dictionary for "give" commands
+give_items = {
+    "carter": [
+        {
+            "type": "text",
+            "content": [
+                "If I know no one got me I know carter got me",
+                "🐐",
+                "carter on top!",
+                "carter on bottom!",
+            ]
+        },
+    ],
+    "pickle": [
+        {
+            "type": "file",
+            "content": ["videos/pickle.mp4", "images/pickle1.png", "images/pickle2.png", "gifs/pickle1.gif"],
+        }
+    ],
+    "julia": [
+        {
+            "type": "gif",
+            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif"]
+        }
+    ]
+}
+
 random_times = []
 
 
-allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID]
+allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID, TEAM_TOYS_SLOP_CHANNEL_ID]
 
 
 
@@ -297,13 +325,7 @@ async def on_message(message):
     elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.reply("carter")
 
-    elif "give pickle" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        file_path = "videos/pickle.mp4"
-        if os.path.exists(file_path):
-            video_file = discord.File(file_path, filename="pickle.mp4")
-            await message.reply(file=video_file)
-        else:
-            await message.reply("Sorry, pickle not found.")
+
 
     elif "send quote" in message.content.lower() and message.channel.id == TEAM_TOYS_BOT_CHANNEL_ID:
         quote = random.choice(quotes)
@@ -328,6 +350,35 @@ async def on_message(message):
             await message.reply("guh something went wrong")
 
 
+
+    elif message.content.lower().startswith("give "):
+        if message.channel.id in allowed_cat_channels:
+            target = message.content.lower().split("give ", 1)[1].strip()
+
+            if target in give_items:
+                for item in give_items[target]:
+                    # Pick randomly if list
+                    choice = random.choice(item["content"]) if isinstance(item["content"], list) else item["content"]
+
+                    if item["type"] == "text":
+                        await message.reply(choice)
+
+                    elif item["type"] == "file":
+                        if os.path.exists(choice):
+                            file = discord.File(choice)
+                            await message.reply(file=file)
+                        else:
+                            await message.reply(f"guh something went wrong")
+
+                    elif item["type"] == "image_url":
+                        await message.reply(choice)
+
+                    elif item["type"] == "gif":
+                        if os.path.exists(choice):
+                            file = discord.File(choice)
+                            await message.reply(file=file)
+                        else:
+                            await message.reply(f"guh something went wrong")
 
 
 
