@@ -184,7 +184,7 @@ give_items = {
 random_times = []
 
 
-allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID, TEAM_TOYS_SLOP_CHANNEL_ID]
+allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID, TEAM_TOYS_SLOP_CHANNEL_ID, TEAM_TOYS_BOT_CHANNEL_ID]
 
 
 
