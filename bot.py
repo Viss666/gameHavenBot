@@ -167,7 +167,7 @@ give_items = {
         },
         {
             "type": "file",
-            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg","images/carter4.png"]
+            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg","images/carter4.png","images/carter5.png"]
         }
     ],
     "pickle": [
@@ -215,7 +215,13 @@ give_items = {
     "oixo": [
         {
             "type":"file",
-            "content":["oixo1.gif","oixo1.png"]
+            "content":["images/oixo1.gif","images/oixo1.png"]
+        }
+    ],
+    "buggy": [
+        {
+            "type":"file",
+            "content":["gifs/buggy1.gif","gifs/buggy2.gif","images/buggy1.png","images/buggy2.jpg"]
         }
     ]
 }
