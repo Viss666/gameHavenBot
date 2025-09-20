@@ -167,19 +167,19 @@ give_items = {
         },
         {
             "type": "file",
-            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg"]
+            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg","images/carter4.png"]
         }
     ],
     "pickle": [
         {
             "type": "file",
-            "content": ["videos/pickle.mp4", "images/pickle1.png", "images/pickle2.png", "gifs/pickle1.gif"],
+            "content": ["videos/pickle.mp4", "images/pickle1.png", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg"],
         }
     ],
     "julia": [
         {
             "type": "gif",
-            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif"]
+            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","images/julia1.png","images/julia2.jpg","images/julia3.jpg","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
         }
     ],
     "dizzy": [
@@ -192,6 +192,18 @@ give_items = {
         {
             "type": "text",
             "content": ["you think you're so fucking funny"]
+        }
+    ],
+    "vis": [
+        {
+            "type": "file",
+            "content":["images/vis1.png","gifs/vis1.gif"]
+        }
+    ],
+    "sylvie": [
+        {
+            "type":"file",
+            "content":["images/sylvie1.jpg","images/sylvie2.png","images/sylvie3.jpg","images/sylvie4.jpg","images/sylvie5.jpg","images/sylvie6.jpg"]
         }
     ]
 }
