@@ -392,7 +392,7 @@ async def on_message(message):
 
 
 
-    elif message.content.lower().startswith("give "):
+    elif message.content.lower().startswith("give ") and message.channel.id in allowed_cat_channels:
         item_name = message.content.lower().split("give ", 1)[1].strip()
         if item_name in give_items:
             # Pick ONE random type (text, file, gif, url, etc.)
