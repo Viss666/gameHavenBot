@@ -358,33 +358,33 @@ async def on_message(message):
 
 
     elif message.content.lower().startswith("give "):
-        if message.channel.id in allowed_cat_channels:
-            target = message.content.lower().split("give ", 1)[1].strip()
+        item_name = message.content.lower().split("give ", 1)[1].strip()
+        if item_name in give_items:
+            # Pick ONE random type (text, file, gif, url, etc.)
+            item = random.choice(give_items[item_name])
+            choice = random.choice(item["content"])
 
-            if target in give_items:
-                for item in give_items[target]:
-                    # Pick randomly if list
-                    choice = random.choice(item["content"]) if isinstance(item["content"], list) else item["content"]
+            if item["type"] == "text":
+                await message.reply(choice)
 
-                    if item["type"] == "text":
-                        await message.reply(choice)
+            elif item["type"] == "file":
+                if os.path.exists(choice):
+                    file = discord.File(choice)
+                    await message.reply(file=file)
+                else:
+                    await message.reply("guh something went wrong")
 
-                    elif item["type"] == "file":
-                        if os.path.exists(choice):
-                            file = discord.File(choice)
-                            await message.reply(file=file)
-                        else:
-                            await message.reply(f"guh something went wrong")
+            elif item["type"] == "gif":
+                if choice.startswith("http"):
+                    await message.reply(choice)
+                elif os.path.exists(choice):
+                    file = discord.File(choice)
+                    await message.reply(file=file)
+                else:
+                    await message.reply("guh something went wrong")
 
-                    elif item["type"] == "image_url":
-                        await message.reply(choice)
-
-                    elif item["type"] == "gif":
-                        if os.path.exists(choice):
-                            file = discord.File(choice)
-                            await message.reply(file=file)
-                        else:
-                            await message.reply(f"guh something went wrong")
+            elif item["type"] == "url":
+                await message.reply(choice)
 
     elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.reply("carter")
