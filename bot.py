@@ -178,7 +178,7 @@ give_items = {
     ],
     "julia": [
         {
-            "type": "gif",
+            "type": "file",
             "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","images/julia1.png","images/julia2.jpg","images/julia3.jpg","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
         }
     ],
