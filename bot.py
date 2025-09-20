@@ -166,6 +166,10 @@ give_items = {
                 "carter on bottom!",
             ]
         },
+        {
+            "type": "file",
+            "content": ["images/carter1.png"]
+        }
     ],
     "pickle": [
         {
@@ -177,6 +181,12 @@ give_items = {
         {
             "type": "gif",
             "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif"]
+        }
+    ],
+    "dizzy": [
+        {
+            "type": "gif",
+            "content": ["gifs/dizzy1.gif"]
         }
     ]
 }
@@ -320,10 +330,6 @@ async def on_message(message):
                 else:
                     await message.reply("Sorry couldn't fetch 😿")
 
-    elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        await message.reply("carter")
-    elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        await message.reply("carter")
 
 
 
@@ -379,6 +385,12 @@ async def on_message(message):
                             await message.reply(file=file)
                         else:
                             await message.reply(f"guh something went wrong")
+
+    elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
+        await message.reply("carter")
+    elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
+        await message.reply("carter")
+
 
 
 
