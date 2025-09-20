@@ -160,7 +160,6 @@ give_items = {
         {
             "type": "text",
             "content": [
-                "If I know no one got me I know carter got me",
                 "🐐",
                 "carter on top!",
                 "carter on bottom!",
@@ -168,7 +167,7 @@ give_items = {
         },
         {
             "type": "file",
-            "content": ["images/carter1.png"]
+            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg"]
         }
     ],
     "pickle": [
@@ -187,6 +186,12 @@ give_items = {
         {
             "type": "gif",
             "content": ["gifs/dizzy1.gif"]
+        }
+    ],
+    "minecraft": [
+        {
+            "type": "text",
+            "content": ["you think you're so fucking funny"]
         }
     ]
 }
