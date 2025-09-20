@@ -215,7 +215,7 @@ give_items = {
     "oixo": [
         {
             "type":"file",
-            "content":["images/oixo1.gif","images/oixo1.png"]
+            "content":["gifs/oixo1.gif","images/oixo1.png"]
         }
     ],
     "buggy": [
