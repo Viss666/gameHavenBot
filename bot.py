@@ -179,13 +179,13 @@ give_items = {
     "julia": [
         {
             "type": "file",
-            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","images/julia1.png","images/julia2.jpg","images/julia3.jpg","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
+            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.jpg","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
         }
     ],
     "marcie": [
         {
             "type": "file",
-            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","images/julia1.png","images/julia2.jpg","images/julia3.jpg","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
+            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.jpg","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
         }
     ],
     "dizzy": [
@@ -203,13 +203,19 @@ give_items = {
     "vis": [
         {
             "type": "file",
-            "content":["images/vis1.png","gifs/vis1.gif"]
+            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif"]
         }
     ],
     "sylvie": [
         {
             "type":"file",
             "content":["images/sylvie1.jpg","images/sylvie2.png","images/sylvie3.jpg","images/sylvie4.jpg","images/sylvie5.jpg","images/sylvie6.jpg"]
+        }
+    ],
+    "oixo": [
+        {
+            "type":"file",
+            "content":["oixo1.gif","oixo1.png"]
         }
     ]
 }
