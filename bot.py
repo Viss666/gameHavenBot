@@ -151,7 +151,20 @@ quotes = [
     "yeah what are you, sandwich meat?",
     "and now I ahve an entire Nation of friends on the internet....",
     "i liek olive gardedn",
-    "Hahhahahahahhah DUMB animal"
+    "Hahhahahahahhah DUMB animal",
+    "Can i get an inteligent man bitch to show me how to make xbox gifs",
+    "SPRINGFEILD OHIO BEST MEALS IN THE U.S.!!!",
+    "Men are alowdd to be ugly since they are all #ExpendableWarriors",
+    "Can i chill with u to i fw the vibe we have cultivated lets do what feels good",
+    "Im sick of all the hater lesbos constantly  trying to ram me off the road and kill me",
+    "Ok but why are the suckers and losers trying to kill me today",
+    "I need 1 keybump of the Ocean",
+    "Hip hop🎶 is peotry✍️",
+    "How to i buy trmu 0 dolar outfit",
+    "Ive got alot of ideas on berrys that mite get me canceled",
+    "Been ages since i had 18 beers almost a full week",
+    "Its hard to use parking lot without smashing into lots of other cars  but thabkfuly i think its cheap to get it fixed so no harm no fowl",
+    "since nobody wants me  i should jsut  go to the burlap buddy race and  hop somewhere far away"
 ]
 
 # dictionary for "give" commands
@@ -425,6 +438,9 @@ async def on_message(message):
         await message.reply("carter")
     elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.reply("carter")
+    elif "hello goat" in message.content.lower() and message.channel.id in allowed_cat_channels:
+        await message.reply("milks you")
+        await message.add_reaction("🥛")
 
 
 
