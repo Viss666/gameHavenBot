@@ -216,7 +216,7 @@ give_items = {
     "vis": [
         {
             "type": "file",
-            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif"]
+            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","images/vis1.jpg","images/vis2.jpg","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
         }
     ],
     "sylvie": [
