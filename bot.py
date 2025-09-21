@@ -186,7 +186,7 @@ give_items = {
     "pickle": [
         {
             "type": "file",
-            "content": ["videos/pickle.mp4", "images/pickle1.png", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg","images/points.png","images/sostands.png","images/staresyou.png","images/thoughtlessbeing.jpg","images/yearyear.png","images/asciimaid.jpg","images/elecmaid.jpg","images/glowingbabything.png","images/kittywonder.jpg","images/myebroom.jpg","images/vlc.png","gifs/strumfast.gif","videos/dapicklelighter.mp4"],
+            "content": ["videos/pickle.mp4", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg","images/points.png","images/sostands.png","images/staresyou.png","images/thoughtlessbeing.jpg","images/yearyear.png","images/asciimaid.jpg","images/elecmaid.jpg","images/glowingbabything.png","images/kittywonder.jpg","images/myebroom.jpg","images/vlc.png","gifs/strumfast.gif","videos/dapicklelighter.mp4"],
         }
     ],
     "julia": [
