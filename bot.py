@@ -236,6 +236,12 @@ give_items = {
             "type":"file",
             "content":["gifs/buggy1.gif","gifs/buggy2.gif","images/buggy1.png","images/buggy2.jpg"]
         }
+    ],
+    "mellohi": [
+        {
+            "type":"file",
+            "content":["mellohi1.png","mellohi2.jpg","mellohi3.jpg","mellohi4.jpg","mellohi5.jpg","mellohi6.jpg","mellohi7.png"]
+        }
     ]
 }
 
