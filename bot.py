@@ -248,6 +248,12 @@ give_items = {
             "type":"file",
             "content":["gifs/two1.gif","gifs/two2.gif","gifs/two3.gif","gifs/two4.gif","gifs/two5.gif","gifs/two6.gif","gifs/two7.gif","gifs/two8.gif","gifs/two9.gif","gifs/two10.gif","gifs/two11.gif","gifs/two12.gif","gifs/two13.gif"]
         }
+    ],
+    "man-e": [
+        {
+            "type":"file",
+            "content":["gifs/man1.gif","gifs/man2.gif","gifs/man3.gif","gifs/man4.gif","gifs/man5.gif","gifs/man7.gif","gifs/man8.gif","gifs/man9.gif","gifs/man10.gif","gifs/man11.gif","gifs/man12.gif","gifs/man13.gif","gifs/man14.gif","gifs/man15.gif","gifs/man16.gif"]
+        }
     ]
 }
 
