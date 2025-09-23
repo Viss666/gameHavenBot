@@ -246,7 +246,7 @@ give_items = {
     "two": [
         {
             "type":"file",
-            "content":["gifs/two1.gif","gifs/two2.gif","gifs/two3.gif","gifs/two4.gif","gifs/two5.gif","gifs/two6.gif","gifs/two7.gif","gifs/two8.gif",]
+            "content":["gifs/two1.gif","gifs/two2.gif","gifs/two3.gif","gifs/two4.gif","gifs/two5.gif","gifs/two6.gif","gifs/two7.gif","gifs/two8.gif","gifs/two9.gif","gifs/two10.gif"]
         }
     ]
 }
