@@ -192,13 +192,13 @@ give_items = {
     "julia": [
         {
             "type": "file",
-            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.png","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
+            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.png","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg","gifs/julia7.gif","gifs/julia8.gif","gifs/julia9.gif","gifs/julia10.gif","gifs/julia11.gif",]
         }
     ],
     "marcie": [
         {
             "type": "file",
-            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.png","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg",]
+            "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.png","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg","gifs/julia7.gif","gifs/julia8.gif","gifs/julia9.gif","gifs/julia10.gif","gifs/julia11.gif",]
         }
     ],
     "dizzy": [
@@ -222,7 +222,7 @@ give_items = {
     "sylvie": [
         {
             "type":"file",
-            "content":["images/sylvie1.jpg","images/sylvie2.png","images/sylvie3.jpg","images/sylvie4.jpg","images/sylvie5.jpg","images/sylvie6.jpg"]
+            "content":["images/sylvie1.jpg","images/sylvie2.png","images/sylvie3.jpg","images/sylvie4.jpg","images/sylvie5.jpg","images/sylvie6.jpg","gifs/sylvie1.gif","gifs/sylvie2.gif","gifs/sylvie3.gif","gifs/sylvie4.gif","gifs/sylvie5.gif","gifs/sylvie6.gif","gifs/sylvie7.gif","gifs/sylvie8.gif","gifs/sylvie9.gif","gifs/sylvie10.gif",]
         }
     ],
     "oixo": [
@@ -252,7 +252,13 @@ give_items = {
     "man-e": [
         {
             "type":"file",
-            "content":["gifs/man1.gif","gifs/man2.gif","gifs/man3.gif","gifs/man4.gif","gifs/man5.gif","gifs/man7.gif","gifs/man8.gif","gifs/man9.gif","gifs/man10.gif","gifs/man11.gif","gifs/man12.gif","gifs/man13.gif","gifs/man14.gif","gifs/man15.gif","gifs/man16.gif"]
+            "content":["gifs/man1.gif","gifs/man2.gif","gifs/man3.gif","gifs/man4.gif","gifs/man5.gif","gifs/man7.gif","gifs/man8.gif","gifs/man9.gif","gifs/man10.gif","gifs/man11.gif","gifs/man12.gif","gifs/man13.gif","gifs/man14.gif","gifs/man15.gif","gifs/man16.gif","gifs/man17.gif","gifs/man18.gif","gifs/man19.gif","gifs/man20.gif"]
+        }
+    ],
+    "steppa": [
+        {
+            "type":"file",
+            "content":["gifs/steppa1.gif","gifs/steppa2.gif","gifs/steppa3.gif","gifs/steppa4.gif","gifs/steppa5.gif"]
         }
     ]
 }
@@ -425,8 +431,17 @@ async def on_message(message):
 
     elif message.content.lower().startswith("give ") and message.channel.id in allowed_cat_channels:
         item_name = message.content.lower().split("give ", 1)[1].strip()
-        if item_name in give_items:
-            # Pick ONE random type (text, file, gif, url, etc.)
+
+        if item_name == "list":
+            names_list = []
+            for name, items in give_items.items():
+                total_content = sum(len(entry["content"]) for entry in items)
+                names_list.append(f"- *{name}* ({total_content})")
+
+            response = "__**oomf list**__\n" + "\n".join(names_list)
+            await message.reply(response)
+
+        elif item_name in give_items:
             item = random.choice(give_items[item_name])
             choice = random.choice(item["content"])
 
@@ -451,6 +466,7 @@ async def on_message(message):
 
             elif item["type"] == "url":
                 await message.reply(choice)
+
 
     elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.add_reaction("🇨")
