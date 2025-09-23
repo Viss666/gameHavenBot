@@ -204,7 +204,7 @@ give_items = {
     "dizzy": [
         {
             "type": "file",
-            "content": ["gifs/dizzy1.gif"]
+            "content": ["gifs/dizzy1.gif","gifs/dizzy2.gif","gifs/dizzy3.gif","gifs/dizzy4.gif","gifs/dizzy5.gif","images/dizzy1.jpg"]
         }
     ],
     "minecraft": [
