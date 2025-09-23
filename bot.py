@@ -447,13 +447,22 @@ async def on_message(message):
                 await message.reply(choice)
 
     elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        await message.add_reaction("🐶")
-        await message.add_reaction("🐕‍🦺")
-        await message.add_reaction("🐕")
+        await message.add_reaction("🇨")
+        await message.add_reaction("🇦")
+        await message.add_reaction("🇷")
+        await message.add_reaction("🇹")
+        await message.add_reaction("🇪")
+        await message.add_reaction("🆁")
+
+
     elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        await message.add_reaction("🐶")
-        await message.add_reaction("🐕‍🦺")
-        await message.add_reaction("🐕")
+        await message.add_reaction("🇨")
+        await message.add_reaction("🇦")
+        await message.add_reaction("🇷")
+        await message.add_reaction("🇹")
+        await message.add_reaction("🇪")
+        await message.add_reaction("🆁")
+
     elif "goat" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.add_reaction("🥛")
 
