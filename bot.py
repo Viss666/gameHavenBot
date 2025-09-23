@@ -186,7 +186,7 @@ give_items = {
     "pickle": [
         {
             "type": "file",
-            "content": ["videos/pickle.mp4", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg","images/points.png","images/sostands.png","images/staresyou.png","images/thoughtlessbeing.jpg","images/yearyear.png","images/asciimaid.jpg","images/elecmaid.jpg","images/glowingbabything.png","images/kittywonder.jpg","images/myebroom.jpg","images/vlc.png","gifs/strumfast.gif","videos/dapicklelighter.mp4"],
+            "content": ["videos/pickle.mp4", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg","images/points.png","images/sostands.png","images/staresyou.png","images/thoughtlessbeing.jpg","images/yearyear.png","images/asciimaid.jpg","images/elecmaid.jpg","images/glowingbabything.png","images/kittywonder.jpg","images/myebroom.jpg","images/vlc.png","gifs/strumfast.gif","videos/dapicklelighter.mp4","images/biologicalwaste.png","images/compactdivine.jpg","images/deceased_bunny","images/mynameispluto.jpg","images/paperbag_ch.jpg","images/roecomplex.jpg","images/roverdose.png"],
         }
     ],
     "julia": [
@@ -240,7 +240,7 @@ give_items = {
     "mellohi": [
         {
             "type":"file",
-            "content":["images/mellohi1.png","images/mellohi2.jpg","images/mellohi3.jpg","images/mellohi4.jpg","images/mellohi5.jpg","images/mellohi6.jpg","images/mellohi7.png"]
+            "content":["images/mellohi1.png","images/mellohi2.jpg","images/mellohi3.jpg","images/mellohi4.jpg","images/mellohi5.jpg","images/mellohi6.jpg","images/mellohi7.png","images/mellohi8.png"]
         }
     ],
     "two": [
