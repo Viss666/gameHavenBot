@@ -240,7 +240,13 @@ give_items = {
     "mellohi": [
         {
             "type":"file",
-            "content":["mellohi1.png","mellohi2.jpg","mellohi3.jpg","mellohi4.jpg","mellohi5.jpg","mellohi6.jpg","mellohi7.png"]
+            "content":["images/mellohi1.png","images/mellohi2.jpg","images/mellohi3.jpg","images/mellohi4.jpg","images/mellohi5.jpg","images/mellohi6.jpg","images/mellohi7.png"]
+        }
+    ],
+    "two": [
+        {
+            "type":"file",
+            "content":["gifs/two1.gif","gifs/two2.gif","gifs/two3.gif","gifs/two4.gif","gifs/two5.gif","gifs/two6.gif","gifs/two7.gif","gifs/two8.gif",]
         }
     ]
 }
