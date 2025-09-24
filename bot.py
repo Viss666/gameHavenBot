@@ -235,7 +235,7 @@ give_items = {
         {
             "type": "text",
             "content": [
-                "RIP BUGGY"
+                "😿 RIP BUGGY 😿"
             ]
         }
     ],
