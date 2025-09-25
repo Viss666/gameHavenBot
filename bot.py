@@ -231,12 +231,11 @@ give_items = {
             "content":["gifs/oixo1.gif","images/oixo1.png"]
         }
     ],
+
     "buggy": [
         {
-            "type": "text",
-            "content": [
-                "😿 RIP BUGGY 😿"
-            ]
+            "type":"file",
+            "content":["gifs/buggy1.gif","gifs/buggy2.gif","images/buggy1.png","images/buggy2.jpg","gifs/bugg1.gif","gifs/bugg2.gif","gifs/bugg3.gif","gifs/bugg4.gif","gifs/bugg5.gif","gifs/bugg6.gif","gifs/bugg7.gif","gifs/bugg8.gif","gifs/bugg8.gif","gifs/bugg9.gif",]
         }
     ],
     "mellohi": [
@@ -266,12 +265,6 @@ give_items = {
 }
 
 
-    # "buggy": [
-    #     {
-    #         "type":"file",
-    #         "content":["gifs/buggy1.gif","gifs/buggy2.gif","images/buggy1.png","images/buggy2.jpg","gifs/bugg1.gif","gifs/bugg2.gif","gifs/bugg3.gif","gifs/bugg4.gif","gifs/bugg5.gif","gifs/bugg6.gif","gifs/bugg7.gif","gifs/bugg8.gif","gifs/bugg8.gif","gifs/bugg9.gif",]
-    #     }
-    # ],
 
 random_times = []
 
