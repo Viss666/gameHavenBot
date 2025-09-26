@@ -448,6 +448,34 @@ async def on_message(message):
             response = "__**oomf list**__\n" + "\n".join(names_list)
             await message.reply(response)
 
+        if item_name == "oomf":
+            valid_keys = [key for key in give_items.keys() if key != "marcie"]
+            random_oomf = random.choice(valid_keys)
+            item = random.choice(give_items[random_oomf])
+            choice = random.choice(item["content"])
+            if item["type"] == "text":
+                await message.reply(choice)
+
+            elif item["type"] == "file":
+                if os.path.exists(choice):
+                    file = discord.File(choice)
+                    await message.reply(file=file)
+                else:
+                    await message.reply("guh something went wrong")
+
+            elif item["type"] == "gif":
+                if choice.startswith("http"):
+                    await message.reply(choice)
+                elif os.path.exists(choice):
+                    file = discord.File(choice)
+                    await message.reply(file=file)
+                else:
+                    await message.reply("guh something went wrong")
+
+            elif item["type"] == "url":
+                await message.reply(choice)
+
+
         elif item_name in give_items:
             item = random.choice(give_items[item_name])
             choice = random.choice(item["content"])
