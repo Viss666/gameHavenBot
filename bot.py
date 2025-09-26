@@ -164,7 +164,11 @@ quotes = [
     "Ive got alot of ideas on berrys that mite get me canceled",
     "Been ages since i had 18 beers almost a full week",
     "Its hard to use parking lot without smashing into lots of other cars  but thabkfuly i think its cheap to get it fixed so no harm no fowl",
-    "since nobody wants me  i should jsut  go to the burlap buddy race and  hop somewhere far away"
+    "since nobody wants me  i should jsut  go to the burlap buddy race and  hop somewhere far away",
+    "its a doggy dog world",
+    "call her George the way she got W bush",
+    "call me the piñata the way stuff comes out when they hit me",
+    
 ]
 
 # dictionary for "give" commands
