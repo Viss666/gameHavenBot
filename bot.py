@@ -263,7 +263,7 @@ give_items = {
     "steppa": [
         {
             "type":"file",
-            "content":["gifs/steppa1.gif","gifs/steppa2.gif","gifs/steppa3.gif","gifs/steppa4.gif","gifs/steppa5.gif"]
+            "content":["gifs/steppa1.gif","gifs/steppa2.gif","gifs/steppa3.gif","gifs/steppa4.gif","gifs/steppa5.gif","gifs/steppa6.gif"]
         }
     ]
 }
