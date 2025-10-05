@@ -517,10 +517,19 @@ async def on_message(message):
         await message.add_reaction("🇪")
         await message.add_reaction("®")
 
-    if message.reference and message.content.lower() in give_items.keys():
-        guess = message.content.lower()
+    elif message.reference:
+        # Check if the message includes a valid name
+        content_lower = message.content.lower()
+        guess = None
+        for name in give_items.keys():
+            if name in content_lower:
+                guess = name
+                break
+        if not guess:
+            return  # no name mentioned
+
         try:
-            # fetch the replied-to message
+            # Fetch the replied-to message
             replied = await message.channel.fetch_message(message.reference.message_id)
         except Exception:
             return  # if the message can't be fetched
