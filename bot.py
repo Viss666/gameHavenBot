@@ -517,6 +517,40 @@ async def on_message(message):
         await message.add_reaction("🇪")
         await message.add_reaction("®")
 
+    if message.reference and message.content.lower() in give_items.keys():
+        guess = message.content.lower()
+        try:
+            # fetch the replied-to message
+            replied = await message.channel.fetch_message(message.reference.message_id)
+        except Exception:
+            return  # if the message can't be fetched
+
+        if replied.author != bot.user:
+            return  # ignore replies to non-bot messages
+
+        # Determine what the bot posted
+        posted_content = None
+        if replied.content:
+            posted_content = replied.content
+        elif replied.attachments:
+            posted_content = replied.attachments[0].filename
+
+        if not posted_content:
+            return  # nothing to match
+
+        # Check if the content belongs to the guessed person
+        for entry in give_items[guess]:
+            if entry["type"] == "text" and posted_content in entry["content"]:
+                await message.add_reaction("✅")
+                return
+            elif entry["type"] == "file":
+                for path in entry["content"]:
+                    if os.path.basename(path) == os.path.basename(posted_content):
+                        await message.add_reaction("✅")
+                        return
+
+        await message.add_reaction("❌")
+
 
     elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.add_reaction("🇨")
