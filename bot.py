@@ -265,6 +265,12 @@ give_items = {
             "type":"file",
             "content":["gifs/steppa1.gif","gifs/steppa2.gif","gifs/steppa3.gif","gifs/steppa4.gif","gifs/steppa5.gif","gifs/steppa6.gif"]
         }
+    ],
+    "cuck": [
+        {
+            "type":"file",
+            "content":["gifs/cuck1.gif","gifs/cuck2.gif","gifs/cuck3.gif","gifs/cuck4.gif","gifs/cuck5.gif","gifs/cuck6.gif"]
+        }
     ]
 }
 
