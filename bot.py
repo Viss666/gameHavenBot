@@ -168,6 +168,12 @@ quotes = [
     "its a doggy dog world",
     "call her George the way she got W bush",
     "call me the piñata the way stuff comes out when they hit me",
+    "mo minecrat mo problems",
+    "@grok why do my paws smell like Fritos",
+    "I’m crossfaded as f and I’m a dog and I’m eating cheesecake like future",
+    "PickleBrothBongWater@gmail.com",
+    "https://www.youtube.com/watch?v=TipTOoziFC0 absolute cinema paulie walnuts . jpg",
+    "IDWNDP - pickle",
     
 ]
 
