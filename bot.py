@@ -148,7 +148,7 @@ quotes = [
     "Its freak friday!",
     "Bitches be like...'He's MY King'. ME: That's your 4th king this year. The fuck... U playing spades???",
     "yeah what are you, sandwich meat?",
-    "and now I ahve an entire Nation of friends on the internet....",
+    "and now I have an entire Nation of friends on the internet....",
     "i liek olive gardedn",
     "Hahhahahahahhah DUMB animal",
     "Can i get an inteligent man bitch to show me how to make xbox gifs",
@@ -223,14 +223,14 @@ give_items = {
     ],
     "minecraft": [
         {
-            "type": "text",
-            "content": ["you think you're so fucking funny"]
+            "type": "file",
+            "content": ["videos/minecraft1.mov","images/minecraft1.png","images/minecraft2.png","images/minecraft3.png","images/minecraft4.png","images/minecraft5.png","images/minecraft6.png","images/minecraft7.png","images/minecraft8.png","images/minecraft9.png","images/minecraft10.png","images/minecraft11.png","images/minecraft12.png","images/minecraft13.png","images/minecraft14.png","images/minecraft15.png","images/minecraft16.png","images/minecraft17.png","images/minecraft18.png","images/minecraft19.png","images/minecraft20.png","images/minecraft21.png",]
         }
     ],
     "vis": [
         {
             "type": "file",
-            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","images/vis1.jpg","images/vis2.jpg","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
+            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
         }
     ],
     "sylvie": [
