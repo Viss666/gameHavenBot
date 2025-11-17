@@ -246,16 +246,10 @@ give_items = {
         }
     ],
 
-    "buggy": [
-        {
-            "type":"file",
-            "content":["gifs/buggy1.gif","gifs/buggy2.gif","images/buggy1.png","images/buggy2.jpg","gifs/bugg1.gif","gifs/bugg2.gif","gifs/bugg3.gif","gifs/bugg5.gif","gifs/bugg6.gif","gifs/bugg7.gif","gifs/bugg9.gif",]
-        }
-    ],
     "mellohi": [
         {
             "type":"file",
-            "content":["images/mellohi1.png","images/mellohi2.jpg","images/mellohi3.jpg","images/mellohi4.jpg","images/mellohi5.jpg","images/mellohi6.jpg","images/mellohi7.png","images/mellohi8.png"]
+            "content":["images/mellohi4.jpg","images/mellohi5.jpg","images/mellohi6.jpg","images/mellohi7.png","images/mellohi8.png"]
         }
     ],
     "two": [
@@ -291,7 +285,7 @@ give_items = {
     "kleitor": [
         {
             "type":"file",
-            "content":["gifs/kleitor1.gif"]
+            "content":["gifs/kleitor1.gif","gifs/kleitor2.gif"]
         }
     ]
 }
