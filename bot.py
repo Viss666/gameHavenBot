@@ -279,13 +279,19 @@ give_items = {
     "mub": [
         {
             "type":"file",
-            "content":["gifs/mub1.gif","gifs/mub2.gif","gifs/mub3.gif","gifs/mub4.gif","gifs/mub5.gif","gifs/mub6.gif","gifs/mub7.gif","gifs/mub8.gif","gifs/mub9.gif","gifs/mub10.gif","gifs/mub11.gif","gifs/mub12.gif","gifs/mub13.gif","gifs/mub14.gif","gifs/mub15.gif","gifs/mub16.gif","gifs/mub17.gif","gifs/mub18.gif","gifs/mub19.gif","gifs/mub20.gif","gifs/mub21.gif","gifs/mub22.gif","gifs/mub23.gif","gifs/mub24.gif","gifs/mub25.gif"]
+            "content":["gifs/mub1.gif","gifs/mub2.gif","gifs/mub3.gif","gifs/mub4.gif","gifs/mub5.gif","gifs/mub6.gif","gifs/mub7.gif","gifs/mub8.gif","gifs/mub9.gif","gifs/mub10.gif","gifs/mub11.gif","gifs/mub12.gif","gifs/mub13.gif","gifs/mub14.gif","gifs/mub15.gif","gifs/mub16.gif","gifs/mub17.gif","gifs/mub18.gif","gifs/mub19.gif","gifs/mub20.gif","gifs/mub21.gif","gifs/mub22.gif","gifs/mub23.gif","gifs/mub24.gif","gifs/mub25.gif","gifs/mub26.gif","gifs/mub27.gif","gifs/mub28.gif"]
         }
     ],
     "kleitor": [
         {
             "type":"file",
             "content":["gifs/kleitor1.gif","gifs/kleitor2.gif"]
+        }
+    ],
+    "rat": [
+        {
+            "type":"file",
+            "content":["gifs/rat1.gif","gifs/rat2.gif","gifs/rat3.gif","gifs/rat4.gif","gifs/rat5.gif","gifs/rat6.gif","gifs/rat7.gif","gifs/rat8.gif","gifs/rat9.gif","gifs/rat10.gif"]
         }
     ]
 }
