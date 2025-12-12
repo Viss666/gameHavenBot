@@ -293,6 +293,12 @@ give_items = {
             "type":"file",
             "content":["gifs/rat1.gif","gifs/rat2.gif","gifs/rat3.gif","gifs/rat4.gif","gifs/rat5.gif","gifs/rat6.gif","gifs/rat7.gif","gifs/rat8.gif","gifs/rat9.gif","gifs/rat10.gif"]
         }
+    ],
+    "chungus": [
+        {
+            "type":"file",
+            "content":["images/chungus1.jpg","images/chungus1.jpg","images/chungus3.jpg"]
+        }
     ]
 }
 
