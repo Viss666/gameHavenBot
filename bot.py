@@ -299,6 +299,12 @@ give_items = {
             "type":"file",
             "content":["images/chungus1.jpg","images/chungus1.jpg","images/chungus3.jpg","images/chungus4.jpg","images/chungus5.jpg","images/chungus6.jpg","images/chungus7.jpg","images/chungus8.jpg","images/chungus9.jpg","images/chungus10.jpg","images/chungus11.jpg","images/chungus12.jpg","images/chungus13.png","images/chungus14.png","images/chungus15.jpg","images/chungus16.jpg","images/chungus17.jpg","images/chungus18.jpg","images/chungus19.jpg","images/chungus20.png","images/chungus21.jpg","images/chungus22.jpg","images/chungus23.jpg","images/chungus24.jpg","images/chungus25.jpg","images/chungus26.jpg","images/chungus27.jpg","images/chungus28.jpg","images/chungus29.jpg","images/chungus30.png","gifs/chungus1.gif","gifs/chungus2.gif"]
         }
+    ],
+    "hank": [
+        {
+            "type":"file",
+            "content":["gifs/hank1.gif","gifs/hank2.gif","gifs/hank3.gif","gifs/hank4.gif","gifs/hank5.gif","gifs/hank6.gif","gifs/hank7.gif","gifs/hank8.gif","gifs/hank9.gif","gifs/hank10.gif","gifs/hank11.gif","gifs/hank12.gif","gifs/hank13.gif","gifs/hank14.gif","gifs/hank15.gif","gifs/hank16.gif","gifs/hank17.gif","gifs/hank18.gif","gifs/hank19.gif","gifs/hank20.gif","images/hank1.jpg"]
+        }
     ]
 }
 
