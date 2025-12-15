@@ -230,7 +230,7 @@ give_items = {
     "vis": [
         {
             "type": "file",
-            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
+            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","gifs/vis3.gif","gifs/vis4.gif","gifs/vis5.gif","gifs/vis6.gif","gifs/vis7.gif","gifs/vis8.gif","gifs/vis9.gif","gifs/vis10.gif","gifs/vis11.gif","gifs/vis12.gif","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
         }
     ],
     "sylvie": [
@@ -304,6 +304,12 @@ give_items = {
         {
             "type":"file",
             "content":["gifs/hank1.gif","gifs/hank2.gif","gifs/hank3.gif","gifs/hank4.gif","gifs/hank5.gif","gifs/hank6.gif","gifs/hank7.gif","gifs/hank8.gif","gifs/hank9.gif","gifs/hank10.gif","gifs/hank11.gif","gifs/hank12.gif","gifs/hank13.gif","gifs/hank14.gif","gifs/hank15.gif","gifs/hank16.gif","gifs/hank17.gif","gifs/hank18.gif","gifs/hank19.gif","gifs/hank20.gif","images/hank1.jpg", "images/hank2.png"]
+        }
+    ],
+    "aleena": [
+        {
+            "type":"file",
+            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","gifs/aleena1.gif"]
         }
     ]
 }
