@@ -303,7 +303,7 @@ give_items = {
     "hank": [
         {
             "type":"file",
-            "content":["gifs/hank1.gif","gifs/hank2.gif","gifs/hank3.gif","gifs/hank4.gif","gifs/hank5.gif","gifs/hank6.gif","gifs/hank7.gif","gifs/hank8.gif","gifs/hank9.gif","gifs/hank10.gif","gifs/hank11.gif","gifs/hank12.gif","gifs/hank13.gif","gifs/hank14.gif","gifs/hank15.gif","gifs/hank16.gif","gifs/hank17.gif","gifs/hank18.gif","gifs/hank19.gif","gifs/hank20.gif","images/hank1.jpg"]
+            "content":["gifs/hank1.gif","gifs/hank2.gif","gifs/hank3.gif","gifs/hank4.gif","gifs/hank5.gif","gifs/hank6.gif","gifs/hank7.gif","gifs/hank8.gif","gifs/hank9.gif","gifs/hank10.gif","gifs/hank11.gif","gifs/hank12.gif","gifs/hank13.gif","gifs/hank14.gif","gifs/hank15.gif","gifs/hank16.gif","gifs/hank17.gif","gifs/hank18.gif","gifs/hank19.gif","gifs/hank20.gif","images/hank1.jpg", "images/hank2.png"]
         }
     ]
 }
