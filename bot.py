@@ -310,7 +310,14 @@ give_items = {
     "aleena": [
         {
             "type":"file",
-            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","gifs/aleena1.gif"]
+            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","gifs/aleena1.gif","gifs/aleena2.gif"]
+        }
+    ],
+    "avery":[
+        {
+            "type":"file",
+            "content":["images/avery1.jpg","images/avery2.jpg","images/avery3.png","images/avery4.jpg","images/avery5.jpg","images/avery7.png","images/avery8.png","images/avery9.jpg","images/avery10.png","images/avery11.png","images/avery12.jpg","images/avery13.png","images/avery14.jpg","images/avery15.jpg","images/avery16.jpg","images/avery17.png","images/avery18.png","images/avery19.jpg","images/avery20.png","gifs/avery1.gif","gifs/avery2.gif","gifs/avery3.gif"]
+            
         }
     ]
 }
