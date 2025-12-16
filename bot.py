@@ -16,6 +16,7 @@ import io
 import zoneinfo
 import random
 
+
 load_dotenv()
 #note
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
@@ -550,12 +551,14 @@ async def on_message(message):
 
 
     elif "carter" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        await message.add_reaction("🇨")
-        await message.add_reaction("🇦")
-        await message.add_reaction("🇷")
-        await message.add_reaction("🇹")
-        await message.add_reaction("🇪")
-        await message.add_reaction("®")
+        c_random = random.randint(1,7)
+        if c_random == 7: 
+            await message.add_reaction("🇨")
+            await message.add_reaction("🇦")
+            await message.add_reaction("🇷")
+            await message.add_reaction("🇹")
+            await message.add_reaction("🇪")
+            await message.add_reaction("®")
 
     elif message.reference:
         # Check if the message includes a valid name
@@ -602,12 +605,14 @@ async def on_message(message):
 
 
     elif "296787239982071809" in message.content.lower() and message.channel.id in allowed_cat_channels:
-        await message.add_reaction("🇨")
-        await message.add_reaction("🇦")
-        await message.add_reaction("🇷")
-        await message.add_reaction("🇹")
-        await message.add_reaction("🇪")
-        await message.add_reaction("®")
+        c_random = random.randint(1,7)
+        if c_random == 7: 
+            await message.add_reaction("🇨")
+            await message.add_reaction("🇦")
+            await message.add_reaction("🇷")
+            await message.add_reaction("🇹")
+            await message.add_reaction("🇪")
+            await message.add_reaction("®")
 
     elif "goat" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.add_reaction("🥛")
