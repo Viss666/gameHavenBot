@@ -327,9 +327,7 @@ give_items = {
         }
     ],
 
-}
-
-
+}# what the hell
 
 random_times = []
 
