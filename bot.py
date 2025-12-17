@@ -216,6 +216,12 @@ give_items = {
             "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.png","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg","gifs/julia7.gif","gifs/julia8.gif","gifs/julia9.gif","gifs/julia10.gif","gifs/julia11.gif",]
         }
     ],
+    "buggy": [
+        {
+            "type":"file",
+            "content":["gifs/buggy1.gif"]
+        }
+    ],
     "dizzy": [
         {
             "type": "file",
@@ -320,12 +326,7 @@ give_items = {
             
         }
     ],
-    "buggy":[
-        {
-            "type":"file",
-            "content":["gifs/buggy1.gif"]
-        }
-    ]
+
 }
 
 
