@@ -231,7 +231,7 @@ give_items = {
     "vis": [
         {
             "type": "file",
-            "content":["images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","gifs/vis3.gif","gifs/vis4.gif","gifs/vis5.gif","gifs/vis6.gif","gifs/vis7.gif","gifs/vis8.gif","gifs/vis9.gif","gifs/vis10.gif","gifs/vis11.gif","gifs/vis12.gif","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
+            "content":["images/vis9.png","images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","gifs/vis3.gif","gifs/vis4.gif","gifs/vis5.gif","gifs/vis6.gif","gifs/vis7.gif","gifs/vis8.gif","gifs/vis9.gif","gifs/vis10.gif","gifs/vis11.gif","gifs/vis12.gif","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
         }
     ],
     "sylvie": [
