@@ -319,6 +319,12 @@ give_items = {
             "content":["images/avery1.jpg","images/avery2.jpg","images/avery3.png","images/avery4.jpg","images/avery5.jpg","images/avery7.png","images/avery8.png","images/avery9.jpg","images/avery10.png","images/avery11.png","images/avery12.jpg","images/avery13.png","images/avery14.jpg","images/avery15.jpg","images/avery16.jpg","images/avery17.png","images/avery18.png","images/avery19.jpg","images/avery20.png","gifs/avery1.gif","gifs/avery2.gif","gifs/avery3.gif"]
             
         }
+    ],
+    "buggy":[
+        {
+            "type":"file",
+            "content":["gifs/buggy1.gif"]
+        }
     ]
 }
 
