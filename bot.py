@@ -219,7 +219,7 @@ give_items = {
     "buggy": [
         {
             "type":"file",
-            "content":["gifs/buggy1.gif"]
+            "content":["gifs/buggy1.gif","gifs/buggy2.gif"]
         }
     ],
     "dizzy": [
@@ -509,7 +509,7 @@ async def on_message(message):
             response = "__**oomf list**__\n" + "\n".join(names_list)
             await message.reply(response)
 
-        if item_name == "oomf":
+        elif item_name == "oomf":
             valid_keys = [key for key in give_items.keys() if key != "marcie"]
             random_oomf = random.choice(valid_keys)
             item = random.choice(give_items[random_oomf])
