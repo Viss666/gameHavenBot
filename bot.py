@@ -326,6 +326,12 @@ give_items = {
             
         }
     ],
+    "elphelt":[
+        {
+            "type":"file",
+            "content":["images/elphelt1.jpg","images/elphelt2.jpg","images/elphelt3.jpg","images/elphelt4.jpg","images/elphelt5.jpg","images/elphelt6.jpg","images/elphelt7.jpg","videos/elphelt1.mp4","vidoes/elphelt2.mp4"]
+        }
+    ]
 
 }# what the hell
 
