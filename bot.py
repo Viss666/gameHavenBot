@@ -195,13 +195,13 @@ give_items = {
         },
         {
             "type": "file",
-            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg","images/carter4.png","images/carter5.png"]
+            "content": ["images/carter1.png", "images/carter2.png", "images/carter3.jpg","images/carter4.png","images/carter5.png","images/carter6.png","images/carter7.jpg","images/carter8.jpg","images/carter9.png","videos/carter1.mov"]
         }
     ],
     "pickle": [
         {
             "type": "file",
-            "content": ["videos/pickle.mp4", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg","images/points.png","images/sostands.png","images/staresyou.png","images/thoughtlessbeing.jpg","images/yearyear.png","images/asciimaid.jpg","images/elecmaid.jpg","images/glowingbabything.png","images/kittywonder.jpg","images/myebroom.jpg","images/vlc.png","gifs/strumfast.gif","videos/dapicklelighter.mp4","images/biologicalwaste.png","images/compactdivine.jpg","images/deceased_bunny.png","images/mynameispluto.jpg","images/paperbag_ch.png","images/roecomplex.jpg","images/roverdose.png"],
+            "content": ["videos/pickle.mp4", "images/pickle2.png", "gifs/pickle1.gif","images/pickle3.jpg","images/points.png","images/sostands.png","images/staresyou.png","images/thoughtlessbeing.jpg","images/yearyear.png","images/asciimaid.jpg","images/elecmaid.jpg","images/glowingbabything.png","images/kittywonder.jpg","images/myebroom.jpg","images/vlc.png","gifs/strumfast.gif","videos/dapicklelighter.mp4","images/biologicalwaste.png","images/compactdivine.jpg","images/deceased_bunny.png","images/mynameispluto.jpg","images/paperbag_ch.png","images/roecomplex.jpg","images/roverdose.png","gifs/pickle2.gif"],
         }
     ],
     "julia": [
@@ -316,7 +316,7 @@ give_items = {
     "aleena": [
         {
             "type":"file",
-            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","gifs/aleena1.gif","gifs/aleena2.gif"]
+            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","images/aleena10.jpg","images/aleena11.jpg","images/aleena12.jpg","images/aleena13.png","images/aleena14.jpg","gifs/aleena1.gif","gifs/aleena2.gif","videos/aleena1.mp4","videos/aleena2.mp4","videos/aleena3.mp4"]
         }
     ],
     "avery":[
