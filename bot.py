@@ -316,7 +316,7 @@ give_items = {
     "aleena": [
         {
             "type":"file",
-            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","images/aleena10.jpg","images/aleena11.jpg","images/aleena12.jpg","images/aleena13.png","images/aleena14.jpg","gifs/aleena1.gif","gifs/aleena2.gif","videos/aleena1.mp4","videos/aleena2.mp4","videos/aleena3.mp4"]
+            "content":["images/aleena1.png","images/aleena2.png","images/aleena3.png","images/aleena4.png","images/aleena5.png","images/aleena6.png","images/aleena7.png","images/aleena8.png","images/aleena9.png","images/aleena10.jpg","images/aleena11.jpg","images/aleena12.jpg","images/aleena13.png","images/aleena14.jpg","gifs/aleena1.gif","gifs/aleena2.gif","videos/aleena1.mp4","videos/aleena2.mp4","videos/aleena3.mp4","videos/aleena4.mp4"]
         }
     ],
     "avery":[
@@ -336,6 +336,12 @@ give_items = {
         {
             "type":"file",
             "content":["gifs/roo1.gif","gifs/roo2.gif","gifs/roo3.gif","gifs/roo4.gif","gifs/roo5.gif","gifs/roo6.gif","gifs/roo7.gif","gifs/roo8.gif"]
+        }
+    ],
+    "gussy":[
+        {
+            "type":"file",
+            "content":["gifs/gussy1.gif"]
         }
     ]
 
