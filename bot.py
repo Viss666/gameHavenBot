@@ -292,7 +292,7 @@ give_items = {
     "kleitor": [
         {
             "type":"file",
-            "content":["gifs/kleitor1.gif","gifs/kleitor2.gif"]
+            "content":["gifs/kleitor1.gif","gifs/kleitor2.gif","gifs/kleitor3.gif","gifs/kleitor4.gif","gifs/kleitor5.gif","gifs/kleitor6.gif","gifs/kleitor7.gif","gifs/kleitor8.gif","gifs/kleitor9.gif","gifs/kleitor10.gif","gifs/kleitor11.gif","gifs/kleitor12.gif"]
         }
     ],
     "rat": [
