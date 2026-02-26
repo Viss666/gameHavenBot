@@ -649,13 +649,9 @@ async def on_message(message):
     elif "goat" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.add_reaction("🥛")
 
-    elif message.channel.id in allowed_cat_channels:
-        await message.add_reaction(":steamhappy:")
 
 
-
-
-
+#no steamhapy
 
     # VERY IMPORTANT: This allows other commands/events (like Flask-triggered ones) to still work
     await bot.process_commands(message)
