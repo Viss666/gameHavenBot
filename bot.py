@@ -590,6 +590,8 @@ async def on_message(message):
             await message.add_reaction("🇪")
             await message.add_reaction("®")
 
+    
+
     elif message.reference:
         # Check if the message includes a valid name
         content_lower = message.content.lower()
@@ -646,6 +648,9 @@ async def on_message(message):
 
     elif "goat" in message.content.lower() and message.channel.id in allowed_cat_channels:
         await message.add_reaction("🥛")
+
+    elif message.channel.id in allowed_cat_channels:
+        await message.add_reaction(":steamhappy:")
 
 
 
