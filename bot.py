@@ -219,7 +219,7 @@ give_items = {
     "buggy": [
         {
             "type":"file",
-            "content":["gifs/buggy1.gif","gifs/buggy2.gif"]
+            "content":["gifs/buggy1.gif","gifs/buggy2.gif","gifs/buggy3.gif"]
         }
     ],
     "dizzy": [
