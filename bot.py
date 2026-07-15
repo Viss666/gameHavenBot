@@ -343,6 +343,12 @@ give_items = {
             "type":"file",
             "content":["gifs/gussy1.gif","gifs/gussy3.gif","gifs/gussy4.gif","gifs/gussy5.gif","images/gussy1.jpg"]
         }
+    ],
+    "eri":[
+        {
+            "type":"file",
+            "content":["gifs/eri1.gif","gifs/eri2.gif","gifs/eri3.gif"]
+        }
     ]
 
 }# what the hell
