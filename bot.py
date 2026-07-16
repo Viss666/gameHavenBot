@@ -277,10 +277,10 @@ give_items = {
             "content":["gifs/steppa1.gif","gifs/steppa2.gif","gifs/steppa3.gif","gifs/steppa4.gif","gifs/steppa5.gif","gifs/steppa6.gif"]
         }
     ],
-    "cuck": [
+    "yuri": [
         {
             "type":"file",
-            "content":["gifs/cuck1.gif","gifs/cuck2.gif","gifs/cuck3.gif","gifs/cuck4.gif","gifs/cuck5.gif","gifs/cuck6.gif"]
+            "content":["gifs/yuri1.gif","gifs/yuri2.gif","gifs/yuri3.gif","gifs/yuri4.gif","gifs/yuri5.gif","gifs/yuri6.gif"]
         }
     ],
     "mub": [
@@ -299,12 +299,6 @@ give_items = {
         {
             "type":"file",
             "content":["gifs/rat1.gif","gifs/rat2.gif","gifs/rat3.gif","gifs/rat4.gif","gifs/rat5.gif","gifs/rat6.gif","gifs/rat7.gif","gifs/rat8.gif","gifs/rat9.gif","gifs/rat10.gif"]
-        }
-    ],
-    "chungy": [
-        {
-            "type":"file",
-            "content":["images/chungus1.jpg","images/chungus1.jpg","images/chungus3.jpg","images/chungus4.jpg","images/chungus5.jpg","images/chungus6.jpg","images/chungus7.jpg","images/chungus8.jpg","images/chungus9.jpg","images/chungus10.jpg","images/chungus11.jpg","images/chungus12.jpg","images/chungus13.png","images/chungus14.png","images/chungus15.jpg","images/chungus16.jpg","images/chungus17.jpg","images/chungus18.jpg","images/chungus19.jpg","images/chungus20.png","images/chungus21.jpg","images/chungus22.jpg","images/chungus23.jpg","images/chungus24.jpg","images/chungus25.jpg","images/chungus26.jpg","images/chungus27.jpg","images/chungus28.jpg","images/chungus29.jpg","images/chungus30.png","gifs/chungus1.gif","gifs/chungus2.gif"]
         }
     ],
     "hank": [
