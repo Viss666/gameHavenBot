@@ -262,7 +262,7 @@ give_items = {
     "two": [
         {
             "type":"file",
-            "content":["gifs/two1.gif","gifs/two2.gif","gifs/two3.gif","gifs/two4.gif","gifs/two5.gif","gifs/two6.gif","gifs/two7.gif","gifs/two8.gif","gifs/two9.gif","gifs/two10.gif","gifs/two11.gif","gifs/two12.gif","gifs/two13.gif"]
+            "content":["gifs/two1.gif","gifs/two2.gif","gifs/two3.gif","gifs/two4.gif","gifs/two5.gif","gifs/two6.gif","gifs/two7.gif","gifs/two8.gif","gifs/two9.gif","gifs/two10.gif","gifs/two11.gif","gifs/two12.gif","gifs/two13.gif","gifs/two14.gif","gifs/two15.gif",]
         }
     ],
     "man-e": [
@@ -439,10 +439,39 @@ async def send_quotes():
     current_time = (now.hour, now.minute)
 
     if current_time in random_times:
-        quote = random.choice(quotes)
+
+        valid_keys = [key for key in give_items.keys() if key != "marcie"]
+        random_oomf = random.choice(valid_keys)
+        item = random.choice(give_items[random_oomf])
+        choice = random.choice(item["content"])
         channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
-        if channel:
-            await channel.send(f"{quote}")
+
+        if item["type"] == "text":
+            await channel.send(choice)
+
+        elif item["type"] == "file":
+            if os.path.exists(choice):
+                file = discord.File(choice)
+                await channel.send(file=file)
+            else:
+                await channel.send("guh something went wrong")
+
+        elif item["type"] == "gif":
+            if choice.startswith("http"):
+                await channel.send(choice)
+            elif os.path.exists(choice):
+                file = discord.File(choice)
+                await channel.send(file=file)
+            else:
+                await channel.send("guh something went wrong")
+
+        elif item["type"] == "url":
+            await channel.send(choice)
+
+        # quote = random.choice(quotes)
+        # channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
+        # if channel:
+        #     await channel.send(f"{quote}")
 
         random_times.remove(current_time)
 
@@ -502,6 +531,35 @@ async def on_message(message):
             await general_channel.send(f"{quote}")
         else:
             await message.reply("guh something went wrong")
+
+    elif "send oomf" in message.content.lower() and message.channel.id == TEAM_TOYS_BOT_CHANNEL_ID:
+        valid_keys = [key for key in give_items.keys() if key != "marcie"]
+        random_oomf = random.choice(valid_keys)
+        item = random.choice(give_items[random_oomf])
+        choice = random.choice(item["content"])
+        channel = bot.get_channel(TEAM_TOYS_GENERAL_CHANNEL_ID)
+
+        if item["type"] == "text":
+            await channel.send(choice)
+
+        elif item["type"] == "file":
+            if os.path.exists(choice):
+                file = discord.File(choice)
+                await channel.send(file=file)
+            else:
+                await channel.send("guh something went wrong")
+
+        elif item["type"] == "gif":
+            if choice.startswith("http"):
+                await channel.send(choice)
+            elif os.path.exists(choice):
+                file = discord.File(choice)
+                await channel.send(file=file)
+            else:
+                await channel.send("guh something went wrong")
+
+        elif item["type"] == "url":
+            await channel.send(choice)
 
     elif message.content.lower().startswith("transmit ") and message.channel.id == TEAM_TOYS_BOT_CHANNEL_ID:
         # Get the text after "transmit "
