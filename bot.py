@@ -332,16 +332,22 @@ give_items = {
             "content":["gifs/roo1.gif","gifs/roo2.gif","gifs/roo3.gif","gifs/roo4.gif","gifs/roo5.gif","gifs/roo6.gif","gifs/roo7.gif","gifs/roo8.gif"]
         }
     ],
-    "gussy":[
-        {
-            "type":"file",
-            "content":["gifs/gussy1.gif","gifs/gussy3.gif","gifs/gussy4.gif","gifs/gussy5.gif","images/gussy1.jpg"]
-        }
-    ],
+# "gussy":[
+#     {
+#         "type":"file",
+#         "content":["gifs/gussy1.gif","gifs/gussy3.gif","gifs/gussy4.gif","gifs/gussy5.gif","images/gussy1.jpg"]
+#     }
+# ],
     "eri":[
         {
             "type":"file",
             "content":["gifs/eri1.gif","gifs/eri2.gif","gifs/eri3.gif"]
+        }
+    ],
+    "jem":[
+        {
+            "type":"file",
+            "content":["gifs/jem1.gif"]
         }
     ]
 
