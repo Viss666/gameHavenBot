@@ -347,7 +347,7 @@ give_items = {
     "jem":[
         {
             "type":"file",
-            "content":["gifs/jem1.gif"]
+            "content":["gifs/jem1.gif","gifs/jem2.gif","gifs/jem3.gif","gifs/jem4.gif","images/jem1.png"]
         }
     ]
 
