@@ -889,6 +889,9 @@ def receive_tf2_chat():
 
     expected = f"Bearer {TF2_RELAY_TOKEN}"
 
+    print(f"[DEBUG] Received: {repr(auth_header)}")
+    print(f"[DEBUG] Expected: {repr(expected)}")
+
     if auth_header != expected:
         return jsonify({
             "error": "Unauthorized"
