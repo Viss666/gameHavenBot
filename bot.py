@@ -1081,10 +1081,10 @@ async def tf2status(ctx: commands.Context):
 
         lines = [f"on **{map_name}**"]
 
-        timeleft_clean = re.sub(r'\s+', ' ', timeleft_clean).strip()
+        timeleft_clean = timeleft_response.strip()
         if timeleft_clean.startswith("[SM] "):
             timeleft_clean = timeleft_clean[5:]
-
+        timeleft_clean = re.sub(r'\s+', ' ', timeleft_clean).strip()
         if timeleft_clean:
             lines.append(timeleft_clean)
 
