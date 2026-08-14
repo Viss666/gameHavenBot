@@ -35,6 +35,7 @@ RELAY_ID = 1537538824538693652
 TF2_RCON_HOST = os.environ.get('TF2_RCON_HOST')
 TF2_RCON_PORT = int(os.environ.get('TF2_RCON_PORT', '27015'))
 TF2_RCON_PASSWORD = os.environ.get('TF2_RCON_PASSWORD') 
+TF2_ADMIN_ROLE_IDS = set(1537193138693607465)
 
 
 kittycons = [
@@ -375,6 +376,13 @@ async def send_rcon_command(command: str) -> str:
         passwd=TF2_RCON_PASSWORD,
     )
 
+def is_tf2_admin(ctx: commands.Context) -> bool:
+    if ctx.author.guild_permissions.administrator:
+        return True
+    author_role_ids = {role.id for role in getattr(ctx.author, 'roles', [])}
+    return bool(author_role_ids & TF2_ADMIN_ROLE_IDS)
+
+
 
 def is_military_time(time_str):
     military_pattern = re.compile(r'^([01]?[0-9]|2[0-3]):[0-5][0-9]$')
@@ -516,10 +524,21 @@ async def send_quotes():
 @bot.event
 async def on_message(message):
     if message.author == bot.user:
-        return  # Prevents the bot from replying to itself
+        return  
+    if (
+            RELAY_ID
+            and message.channel.id == RELAY_ID
+            and not message.content.startswith(bot.command_prefix)
+            and message.content.strip()
+        ):
+            try:
+                safe_content = message.content.replace('"', "'")
+                await send_rcon_command(f'say {message.author.display_name}: {safe_content}')
+            except Exception as e:
+                print(f"Failed to relay Discord message to TF2: {e}")
 
     # Check for a trigger phrase
-    if "this is heresy" in message.content.lower():
+    elif "this is heresy" in message.content.lower():
         file_path = "videos/heresy.mp4"  
 
         if os.path.exists(file_path):
@@ -911,7 +930,7 @@ async def send_tf2_chat_to_discord(chat_data):
     if chat_type == "mapchange":
             map_name = player 
             await channel.send(
-                f"map changed to: **{map_name}**",
+                f"‼️map changed to: **{map_name}**‼️",
                 allowed_mentions=discord.AllowedMentions.none()
             )
             return
@@ -936,9 +955,6 @@ def receive_tf2_chat():
     auth_header = request.headers.get("Authorization", "")
 
     expected = f"Bearer {TF2_RELAY_TOKEN}"
-
-    print(f"[DEBUG] Received: {repr(auth_header)}")
-    print(f"[DEBUG] Expected: {repr(expected)}")
 
     if auth_header != expected:
         return jsonify({
@@ -971,6 +987,64 @@ def receive_tf2_chat():
     return jsonify({
         "status": "success"
     }), 200
+
+
+@bot.command(name='tf2ban')
+async def tf2ban(ctx: commands.Context, target: str, duration: int = 0, *, reason: str = "No reason given"):
+    """Ban a currently-connected player by name or #userid. duration in minutes (0 = permanent)."""
+    if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
+        return
+    if not is_tf2_admin(ctx):
+        await ctx.reply("You don't have permission to use this command.")
+        return
+    try:
+        await send_rcon_command(f'sm_ban "{target}" {duration} "{reason}"')
+        await ctx.reply(f"Ban command sent for **{target}** ({'permanent' if duration == 0 else f'{duration} min'}).")
+    except Exception as e:
+        await ctx.reply(f"Failed to send ban command: {e}")
+
+
+@bot.command(name='tf2banid')
+async def tf2banid(ctx: commands.Context, steamid: str, duration: int = 0, *, reason: str = "No reason given"):
+    """Ban by SteamID, works even if the player is offline."""
+    if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
+        return
+    if not is_tf2_admin(ctx):
+        await ctx.reply("You don't have permission to use this command.")
+        return
+    try:
+        await send_rcon_command(f'sm_addban {duration} "{steamid}" "{reason}"')
+        await ctx.reply(f"Ban added for SteamID **{steamid}** ({'permanent' if duration == 0 else f'{duration} min'}).")
+    except Exception as e:
+        await ctx.reply(f"Failed to send ban command: {e}")
+
+
+@bot.command(name='tf2unban')
+async def tf2unban(ctx: commands.Context, steamid: str):
+    """Usage: !tf2unban STEAM_0:1:123456"""
+    if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
+        return
+    if not is_tf2_admin(ctx):
+        await ctx.reply("You don't have permission to use this command.")
+        return
+    try:
+        response = await send_rcon_command(f'sm_unban "{steamid}"')
+        await ctx.reply(f"Unban result for **{steamid}**: {response.strip() or 'command sent'}")
+    except Exception as e:
+        await ctx.reply(f"Failed to send unban command: {e}")
+
+
+@bot.command(name='tf2status')
+async def tf2status(ctx: commands.Context):
+    """Shows current players on the TF2 server."""
+    if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
+        return
+    try:
+        response = await send_rcon_command('status')
+        trimmed = response[-1800:] if len(response) > 1800 else response
+        await ctx.reply(f"```{trimmed}```")
+    except Exception as e:
+        await ctx.reply(f"Failed to get status: {e}")
 
 def run_flask_app():
     app.run(host='0.0.0.0', port=9999)
