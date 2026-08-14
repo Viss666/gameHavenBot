@@ -424,7 +424,7 @@ async def on_ready():
     global random_times
     random_times = schedule_random_times()
     print(f"Scheduled random quote times: {random_times}")
-    update_tf2_player_count()
+    update_tf2_player_count().start()
 
 
 @tasks.loop(minutes=1)
@@ -453,7 +453,7 @@ async def update_tf2_player_count():
         humans, bots, maxplayers = match.groups()
         channel = bot.get_channel(RELAY_ID)
         if channel:
-            await channel.edit(topic=f"{humans}/{maxplayers} players")
+            await channel.edit(topic=f"liquor.teamtoyz.com - {humans}/{maxplayers} players")
     except Exception as e:
         print(f"Failed to update player count topic: {e}")
 
@@ -914,7 +914,7 @@ async def send_tf2_chat_to_discord(chat_data):
         steamid = parts[0] if len(parts) > 0 else "unknown"
         reason = parts[1] if len(parts) > 1 else "Unknown reason"
         await channel.send(
-            f"**{player}** (`{steamid}`) left the server ({reason})",
+            f"**{player}** `{steamid}` left the server ({reason})",
             allowed_mentions=discord.AllowedMentions.none()
         )
         return
