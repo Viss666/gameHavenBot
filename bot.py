@@ -990,20 +990,19 @@ def receive_tf2_chat():
 
 
 @bot.command(name='tf2ban')
+@bot.command(name='tf2ban')
 async def tf2ban(ctx: commands.Context, target: str, duration: int = 0, *, reason: str = "No reason given"):
-    """Ban a currently-connected player by name or #userid. duration in minutes (0 = permanent)."""
     if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
         return
     if not is_tf2_admin(ctx):
         await ctx.reply("You don't have permission to use this command.")
         return
     try:
-        await send_rcon_command(f'sm_ban "{target}" {duration} "{reason}"')
-        await ctx.reply(f"Ban command sent for **{target}** ({'permanent' if duration == 0 else f'{duration} min'}).")
+        response = await send_rcon_command(f'sm_ban {target} {duration} "{reason}"')
+        await ctx.reply(f"Ban command sent for **{target}**. Server response: ```{response.strip() or '(no output)'}```")
     except Exception as e:
         await ctx.reply(f"Failed to send ban command: {e}")
-
-
+        
 @bot.command(name='tf2banid')
 async def tf2banid(ctx: commands.Context, steamid: str, duration: int = 0, *, reason: str = "No reason given"):
     """Ban by SteamID, works even if the player is offline."""
