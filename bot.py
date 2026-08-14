@@ -901,10 +901,22 @@ async def send_tf2_chat_to_discord(chat_data):
     chat_type = chat_data.get("chat_type", "say")
 
     if chat_type == "join":
-        await channel.send(f"**{player}** joined the server", allowed_mentions=discord.AllowedMentions.none())
+        steamid = message  # for join, the "message" field is just the steamid
+        await channel.send(
+            f"**{player}** (`{steamid}`) joined the server",
+            allowed_mentions=discord.AllowedMentions.none()
+        )
         return
+
     if chat_type == "leave":
-        await channel.send(f"**{player}** left the server", allowed_mentions=discord.AllowedMentions.none())
+        # message field is "steamid;;;reason"
+        parts = message.split(";;;", 1)
+        steamid = parts[0] if len(parts) > 0 else "unknown"
+        reason = parts[1] if len(parts) > 1 else "Unknown reason"
+        await channel.send(
+            f"**{player}** (`{steamid}`) left the server ({reason})",
+            allowed_mentions=discord.AllowedMentions.none()
+        )
         return
 
     prefix = f"**{player}**" if chat_type == "say_team" else f"**{player}**"
