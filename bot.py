@@ -915,6 +915,7 @@ TF2_RELAY_TOKEN = os.environ.get("TF2_RELAY_TOKEN")
 STATUS_PLAYER_PATTERN = re.compile(
     r'^#\s*(?P<userid>\d+)\s+"(?P<name>.*)"\s+(?P<uniqueid>\S+)\s+(?P<connected>[\d:]+)\s+'
 )
+STATUS_PLAYERCOUNT_PATTERN = re.compile(r'players\s*:\s*(\d+)\s*humans,\s*(\d+)\s*bots\s*\((\d+)\s*max\)')
 STATUS_MAP_PATTERN = re.compile(r'^map\s*:\s*(?P<map>\S+)')
 
 
@@ -1066,11 +1067,16 @@ async def tf2status(ctx: commands.Context):
 
         map_name = "unknown"
         players = []  # list of (name, connected_seconds, connected_str)
-
+        max_players = None
         for line in status_response.splitlines():
             map_match = STATUS_MAP_PATTERN.search(line)
             if map_match:
                 map_name = map_match.group('map')
+                continue
+
+            count_match = STATUS_PLAYERCOUNT_PATTERN.search(line)
+            if count_match:
+                max_players = count_match.group(3)
                 continue
 
             player_match = STATUS_PLAYER_PATTERN.search(line)
@@ -1080,6 +1086,9 @@ async def tf2status(ctx: commands.Context):
                 players.append((name, parse_connected_seconds(connected_str), connected_str))
 
         lines = [f"on **{map_name}**"]
+
+        if max_players:
+            lines.append(f"Players: {len(players)}/{max_players}")
 
         timeleft_clean = timeleft_response.strip()
         if timeleft_clean.startswith("[SM] "):
