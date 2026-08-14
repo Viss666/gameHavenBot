@@ -853,7 +853,7 @@ def receive_event():
         return jsonify({"error": "Request must be JSON"}), 400
 
 TF2_RELAY_TOKEN = os.environ.get("TF2_RELAY_TOKEN")
-RELAY_ID = '1537538824538693652'
+RELAY_ID = 1537538824538693652
 
 
 async def send_tf2_chat_to_discord(chat_data):
