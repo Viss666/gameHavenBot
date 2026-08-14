@@ -912,6 +912,24 @@ def receive_event():
 
 TF2_RELAY_TOKEN = os.environ.get("TF2_RELAY_TOKEN")
 
+STATUS_PLAYER_PATTERN = re.compile(
+    r'^#\s*(?P<userid>\d+)\s+"(?P<name>.*)"\s+(?P<uniqueid>\S+)\s+(?P<connected>[\d:]+)\s+'
+)
+STATUS_MAP_PATTERN = re.compile(r'^map\s*:\s*(?P<map>\S+)')
+
+
+def parse_connected_seconds(connected_str: str) -> int:
+    """Converts 'MM:SS' or 'HH:MM:SS' into total seconds for comparison."""
+    parts = [int(p) for p in connected_str.split(':')]
+    if len(parts) == 2:
+        m, s = parts
+        return m * 60 + s
+    if len(parts) == 3:
+        h, m, s = parts
+        return h * 3600 + m * 60 + s
+    return 0
+
+
 
 async def send_tf2_chat_to_discord(chat_data):
     await bot.wait_until_ready()
@@ -1037,17 +1055,50 @@ async def tf2unban(ctx: commands.Context, steamid: str):
         await ctx.reply(f"Failed to send unban command: {e}")
 
 
-@bot.hybrid_command(name='tf2status', description="Show current TF2 server player list")
+
+@bot.hybrid_command(name='tf2status', description="Show current TF2 server status")
 async def tf2status(ctx: commands.Context):
-    """Shows current players on the TF2 server."""
     if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
         return
     try:
-        response = await send_rcon_command('status')
-        trimmed = response[-1800:] if len(response) > 1800 else response
-        await ctx.reply(f"```{trimmed}```")
+        status_response = await send_rcon_command('status')
+        timeleft_response = await send_rcon_command('timeleft')
+
+        map_name = "unknown"
+        players = []  # list of (name, connected_seconds, connected_str)
+
+        for line in status_response.splitlines():
+            map_match = STATUS_MAP_PATTERN.search(line)
+            if map_match:
+                map_name = map_match.group('map')
+                continue
+
+            player_match = STATUS_PLAYER_PATTERN.search(line)
+            if player_match:
+                name = discord.utils.escape_markdown(player_match.group('name')).replace('|', '/')
+                connected_str = player_match.group('connected')
+                players.append((name, parse_connected_seconds(connected_str), connected_str))
+
+        lines = [f"on **{map_name}**"]
+
+        timeleft_clean = re.sub(r'\s+', ' ', timeleft_clean).strip()
+        if timeleft_clean.startswith("[SM] "):
+            timeleft_clean = timeleft_clean[5:]
+
+        if timeleft_clean:
+            lines.append(timeleft_clean)
+
+        if players:
+            oldest = max(players, key=lambda p: p[1])
+            lines.append(f"Current no life: **{oldest[0]}** for {oldest[2]}")
+            lines.append(" | ".join(p[0] for p in players))
+        else:
+            lines.append("No players currently connected.")
+
+        await ctx.reply("\n".join(lines), allowed_mentions=discord.AllowedMentions.none())
     except Exception as e:
         await ctx.reply(f"Failed to get status: {e}")
+
 
 def run_flask_app():
     app.run(host='0.0.0.0', port=9999)
