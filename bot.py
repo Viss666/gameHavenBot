@@ -433,6 +433,11 @@ async def on_ready():
     random_times = schedule_random_times()
     print(f"Scheduled random quote times: {random_times}")
     update_tf2_player_count.start()
+    try:
+        synced = await bot.tree.sync()
+        print(f"Synced {len(synced)} slash command(s)")
+    except Exception as e:
+        print(f"Failed to sync slash commands: {e}")
 
 
 @tasks.loop(minutes=1)
@@ -989,8 +994,7 @@ def receive_tf2_chat():
     }), 200
 
 
-@bot.command(name='tf2ban')
-@bot.command(name='tf2ban')
+@bot.hybrid_command(name='tf2ban', description="Ban a currently-connected TF2 player")
 async def tf2ban(ctx: commands.Context, target: str, duration: int = 0, *, reason: str = "No reason given"):
     if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
         return
@@ -1003,7 +1007,7 @@ async def tf2ban(ctx: commands.Context, target: str, duration: int = 0, *, reaso
     except Exception as e:
         await ctx.reply(f"Failed to send ban command: {e}")
         
-@bot.command(name='tf2banid')
+@bot.hybrid_command(name='tf2banid', description="Ban a player by SteamID, even if offline")
 async def tf2banid(ctx: commands.Context, steamid: str, duration: int = 0, *, reason: str = "No reason given"):
     """Ban by SteamID, works even if the player is offline."""
     if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
@@ -1018,7 +1022,7 @@ async def tf2banid(ctx: commands.Context, steamid: str, duration: int = 0, *, re
         await ctx.reply(f"Failed to send ban command: {e}")
 
 
-@bot.command(name='tf2unban')
+@bot.hybrid_command(name='tf2unban', description="Unban a player by SteamID")
 async def tf2unban(ctx: commands.Context, steamid: str):
     """Usage: !tf2unban STEAM_0:1:123456"""
     if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
@@ -1033,7 +1037,7 @@ async def tf2unban(ctx: commands.Context, steamid: str):
         await ctx.reply(f"Failed to send unban command: {e}")
 
 
-@bot.command(name='tf2status')
+@bot.hybrid_command(name='tf2status', description="Show current TF2 server player list")
 async def tf2status(ctx: commands.Context):
     """Shows current players on the TF2 server."""
     if ctx.channel.id != RELAY_ID and ctx.channel.id != TEAM_TOYS_BOT_CHANNEL_ID:
