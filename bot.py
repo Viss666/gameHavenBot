@@ -903,7 +903,7 @@ async def send_tf2_chat_to_discord(chat_data):
     if chat_type == "join":
         steamid = message  # for join, the "message" field is just the steamid
         await channel.send(
-            f"**{player}** (`{steamid}`) joined the server",
+            f"**{player}** `{steamid}` joined the server",
             allowed_mentions=discord.AllowedMentions.none()
         )
         return
