@@ -424,7 +424,7 @@ async def on_ready():
     global random_times
     random_times = schedule_random_times()
     print(f"Scheduled random quote times: {random_times}")
-    update_tf2_player_count().start()
+    update_tf2_player_count.start()
 
 
 @tasks.loop(minutes=1)
