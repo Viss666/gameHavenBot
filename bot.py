@@ -908,6 +908,14 @@ async def send_tf2_chat_to_discord(chat_data):
         )
         return
 
+    if chat_type == "mapchange":
+            map_name = player 
+            await channel.send(
+                f"map changed to: **{map_name}**",
+                allowed_mentions=discord.AllowedMentions.none()
+            )
+            return
+
     if chat_type == "leave":
         # message field is "steamid;;;reason"
         parts = message.split(";;;", 1)
