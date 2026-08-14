@@ -537,8 +537,9 @@ async def on_message(message):
             and message.content.strip()
         ):
             try:
+                safe_name = message.author.display_name.replace('"', "'")
                 safe_content = message.content.replace('"', "'")
-                await send_rcon_command(f'say {message.author.display_name}: {safe_content}')
+                await send_rcon_command(f'relay_say "{safe_name}" "{safe_content}"')
             except Exception as e:
                 print(f"Failed to relay Discord message to TF2: {e}")
 
