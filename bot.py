@@ -15,6 +15,7 @@ import os
 import io
 import zoneinfo
 import random
+from rcon.source import rcon as rcon_send
 
 
 load_dotenv()
@@ -29,6 +30,12 @@ CAT_CHANNEL_ID = 1415227688368607323
 TEAM_TOYS_GENERAL_CHANNEL_ID = 1377545202029432855
 TEAM_TOYS_BOT_CHANNEL_ID = 1418346729429798953
 TEAM_TOYS_SLOP_CHANNEL_ID = 1417985931708731473
+RELAY_ID = 1537538824538693652
+
+TF2_RCON_HOST = os.environ.get('64.225.49.196')
+TF2_RCON_PORT = int(os.environ.get('TF2_RCON_PORT', '27015'))
+TF2_RCON_PASSWORD = os.environ.get('TF2_RCON_PASSWORD') 
+
 
 kittycons = [
     ":3",
@@ -358,6 +365,15 @@ random_times = []
 
 allowed_cat_channels = [CAT_CHANNEL_ID, TEAM_TOYS_GENERAL_CHANNEL_ID, TEAM_TOYS_SLOP_CHANNEL_ID, TEAM_TOYS_BOT_CHANNEL_ID]
 
+async def send_rcon_command(command: str) -> str:
+    if not TF2_RCON_HOST or not TF2_RCON_PASSWORD:
+        raise RuntimeError("TF2_RCON_HOST / TF2_RCON_PASSWORD is not set in the environment.")
+    return await rcon_send(
+        command,
+        host=TF2_RCON_HOST,
+        port=TF2_RCON_PORT,
+        passwd=TF2_RCON_PASSWORD,
+    )
 
 
 def is_military_time(time_str):
@@ -408,6 +424,7 @@ async def on_ready():
     global random_times
     random_times = schedule_random_times()
     print(f"Scheduled random quote times: {random_times}")
+    update_tf2_player_count()
 
 
 @tasks.loop(minutes=1)
@@ -422,6 +439,23 @@ async def send_cat():
                         data = await resp.read()
                         await channel.send(content="Good meowning! =3",file=discord.File(fp=io.BytesIO(data), filename="cat.jpg"))
 
+CHAT_STATUS_PATTERN = re.compile(r'players\s*:\s*(\d+)\s*humans,\s*(\d+)\s*bots\s*\((\d+)\s*max\)')
+
+@tasks.loop(minutes=5)
+async def update_tf2_player_count():
+    if not RELAY_ID:
+        return
+    try:
+        response = await send_rcon_command('status')
+        match = CHAT_STATUS_PATTERN.search(response)
+        if not match:
+            return
+        humans, bots, maxplayers = match.groups()
+        channel = bot.get_channel(RELAY_ID)
+        if channel:
+            await channel.edit(topic=f"{humans}/{maxplayers} players")
+    except Exception as e:
+        print(f"Failed to update player count topic: {e}")
 
 def schedule_random_times():
     """Generate two random times today (hour + minute)."""
@@ -853,15 +887,11 @@ def receive_event():
         return jsonify({"error": "Request must be JSON"}), 400
 
 TF2_RELAY_TOKEN = os.environ.get("TF2_RELAY_TOKEN")
-RELAY_ID = 1537538824538693652
 
 
 async def send_tf2_chat_to_discord(chat_data):
-
     await bot.wait_until_ready()
-
     channel = bot.get_channel(RELAY_ID)
-
     if not channel:
         print("TF2 relay: Discord channel not found.")
         return
@@ -869,18 +899,16 @@ async def send_tf2_chat_to_discord(chat_data):
     player = chat_data.get("player", "Unknown")
     message = chat_data.get("message", "")
     chat_type = chat_data.get("chat_type", "say")
-    team = chat_data.get("team", "")
 
-    if chat_type == "say_team":
-        prefix = f"**[TF2 Team] {player}**"
-    else:
-        prefix = f"**[TF2] {player}**"
+    if chat_type == "join":
+        await channel.send(f"**{player}** joined the server", allowed_mentions=discord.AllowedMentions.none())
+        return
+    if chat_type == "leave":
+        await channel.send(f"**{player}** left the server", allowed_mentions=discord.AllowedMentions.none())
+        return
 
-    await channel.send(
-        f"{prefix}: {message}",
-        allowed_mentions=discord.AllowedMentions.none()
-    )
-
+    prefix = f"**{player}**" if chat_type == "say_team" else f"**{player}**"
+    await channel.send(f"{prefix}: {message}", allowed_mentions=discord.AllowedMentions.none())
 
 @app.route('/tf2_chat', methods=['POST'])
 def receive_tf2_chat():
