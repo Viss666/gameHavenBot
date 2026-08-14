@@ -852,6 +852,75 @@ def receive_event():
     else:
         return jsonify({"error": "Request must be JSON"}), 400
 
+TF2_RELAY_TOKEN = os.environ.get("TF2_RELAY_TOKEN")
+RELAY_ID = '1537538824538693652'
+
+
+async def send_tf2_chat_to_discord(chat_data):
+
+    await bot.wait_until_ready()
+
+    channel = bot.get_channel(RELAY_ID)
+
+    if not channel:
+        print("TF2 relay: Discord channel not found.")
+        return
+
+    player = chat_data.get("player", "Unknown")
+    message = chat_data.get("message", "")
+    chat_type = chat_data.get("chat_type", "say")
+    team = chat_data.get("team", "")
+
+    if chat_type == "say_team":
+        prefix = f"**[TF2 Team] {player}**"
+    else:
+        prefix = f"**[TF2] {player}**"
+
+    await channel.send(
+        f"{prefix}: {message}",
+        allowed_mentions=discord.AllowedMentions.none()
+    )
+
+
+@app.route('/tf2_chat', methods=['POST'])
+def receive_tf2_chat():
+
+    auth_header = request.headers.get("Authorization", "")
+
+    expected = f"Bearer {TF2_RELAY_TOKEN}"
+
+    if auth_header != expected:
+        return jsonify({
+            "error": "Unauthorized"
+        }), 401
+
+    if not request.is_json:
+        return jsonify({
+            "error": "Request must be JSON"
+        }), 400
+
+    chat_data = request.get_json()
+
+    if not chat_data:
+        return jsonify({
+            "error": "Missing chat data"
+        }), 400
+
+    print(
+        f"TF2 CHAT: "
+        f"{chat_data.get('player')}: "
+        f"{chat_data.get('message')}"
+    )
+
+    asyncio.run_coroutine_threadsafe(
+        send_tf2_chat_to_discord(chat_data),
+        bot.loop
+    )
+
+    return jsonify({
+        "status": "success"
+    }), 200
+
 def run_flask_app():
     app.run(host='0.0.0.0', port=9999)
 
