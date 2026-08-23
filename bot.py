@@ -236,12 +236,12 @@ give_items = {
             "content": ["gifs/dizzy1.gif","gifs/dizzy2.gif","gifs/dizzy3.gif","gifs/dizzy4.gif","images/dizzy1.jpg"]
         }
     ],
-    "minecraft": [
-        {
-            "type": "file",
-            "content": ["videos/minecraft1.mov","images/minecraft1.png","images/minecraft2.png","images/minecraft3.png","images/minecraft4.png","images/minecraft5.png","images/minecraft6.png","images/minecraft7.png","images/minecraft8.png","images/minecraft9.png","images/minecraft10.png","images/minecraft11.png","images/minecraft12.png","images/minecraft13.png","images/minecraft14.png","images/minecraft15.png","images/minecraft16.png","images/minecraft17.png","images/minecraft18.png","images/minecraft19.png","images/minecraft20.png","images/minecraft21.png",]
-        }
-    ],
+    # "minecraft": [
+    #     {
+    #         "type": "file",
+    #         "content": ["videos/minecraft1.mov","images/minecraft1.png","images/minecraft2.png","images/minecraft3.png","images/minecraft4.png","images/minecraft5.png","images/minecraft6.png","images/minecraft7.png","images/minecraft8.png","images/minecraft9.png","images/minecraft10.png","images/minecraft11.png","images/minecraft12.png","images/minecraft13.png","images/minecraft14.png","images/minecraft15.png","images/minecraft16.png","images/minecraft17.png","images/minecraft18.png","images/minecraft19.png","images/minecraft20.png","images/minecraft21.png",]
+    #     }
+    # ],
     "vis": [
         {
             "type": "file",
