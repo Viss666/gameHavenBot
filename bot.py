@@ -224,10 +224,10 @@ give_items = {
             "content": ["gifs/julia1.gif", "gifs/julia2.gif", "gifs/julia3.gif", "gifs/julia4.gif","gifs/julia5.gif","gifs/julia6.gif","images/julia1.png","images/julia2.jpg","images/julia3.png","images/julia4.jpg","images/julia5.jpg","images/julia6.jpg","gifs/julia7.gif","gifs/julia8.gif","gifs/julia9.gif","gifs/julia10.gif","gifs/julia11.gif",]
         }
     ],
-    "buggy": [
+    "haidi": [
         {
             "type":"file",
-            "content":["gifs/buggy1.gif","gifs/buggy2.gif","gifs/buggy3.gif"]
+            "content":["gifs/haidi1.gif","gifs/haidi2.gif","gifs/haidi3.gif","images/haidi1.png","images/haidi2.png"]
         }
     ],
     "dizzy": [
@@ -245,7 +245,7 @@ give_items = {
     "vis": [
         {
             "type": "file",
-            "content":["images/vis9.png","images/vis1.png","gifs/vis1.gif","gifs/vis2.gif","gifs/vis3.gif","gifs/vis4.gif","gifs/vis5.gif","gifs/vis6.gif","gifs/vis7.gif","gifs/vis8.gif","gifs/vis9.gif","gifs/vis10.gif","gifs/vis11.gif","gifs/vis12.gif","images/vis3.jpg","images/vis4.jpg","images/vis5.jpg","images/vis6.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
+            "content":["gifs/vis13.gif","images/vis9.png","gifs/vis1.gif","gifs/vis2.gif","gifs/vis3.gif","gifs/vis4.gif","gifs/vis5.gif","gifs/vis6.gif","gifs/vis7.gif","gifs/vis8.gif","gifs/vis9.gif","gifs/vis10.gif","gifs/vis11.gif","gifs/vis12.gif","images/vis3.jpg","images/vis7.jpg","images/vis8.jpg","gifs/vis3.gif"]
         }
     ],
     "sylvie": [
@@ -340,12 +340,12 @@ give_items = {
             "content":["gifs/roo1.gif","gifs/roo2.gif","gifs/roo3.gif","gifs/roo4.gif","gifs/roo5.gif","gifs/roo6.gif","gifs/roo7.gif","gifs/roo8.gif"]
         }
     ],
-# "gussy":[
-#     {
-#         "type":"file",
-#         "content":["gifs/gussy1.gif","gifs/gussy3.gif","gifs/gussy4.gif","gifs/gussy5.gif","images/gussy1.jpg"]
-#     }
-# ],
+    "gussy":[
+        {
+            "type":"file",
+            "content":["gifs/gussy1.gif","gifs/gussy3.gif","gifs/gussy4.gif","gifs/gussy5.gif","images/gussy1.jpg"]
+        }
+    ],
     "eri":[
         {
             "type":"file",
@@ -356,6 +356,18 @@ give_items = {
         {
             "type":"file",
             "content":["gifs/jem1.gif","gifs/jem2.gif","gifs/jem3.gif","gifs/jem4.gif","images/jem1.png"]
+        }
+    ],
+    "pepper":[
+        {
+            "type":"file",
+            "content":["images/pepper1.png","images/pepper2.png","gifs/pepper1.gif","gifs/pepper2.gif","gifs/pepper3.gif","gifs/pepper4.gif"]
+        }
+    ],
+    "wibee":[
+        {
+            "type":"file",
+            "content":["gifs/wibee1.gif","gifs/wibee2.gif","gifs/wibee3.gif","gifs/wibee4.gif","gifs/wibee5.gif","gifs/wibee6.gif"]
         }
     ]
 
